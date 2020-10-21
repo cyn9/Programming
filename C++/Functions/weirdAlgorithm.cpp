@@ -6,7 +6,9 @@ using namespace std;
 
 int main(void) {
 	ll n;
+	cout << "Enter a number: ";
 	cin >> n;
+	
 	cout << n;
 
 	while (n > 1) {
@@ -15,6 +17,7 @@ int main(void) {
 
 		cout << " " << n;
 	}
+
 	cout << endl;
 
 	return 0;
