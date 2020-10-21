@@ -2,14 +2,10 @@
 end_of_line = lf
 insert_final_newline = true
 
-[*.py]
+[*.{py, c, cpp}]
 indent_style = space
 indent_size = 4
 
-[*.cpp]
+[*.{html, css}]
 indent_style = space
-indent_size = 4
-
-[*.c]
-indent_style = space
-indent_size = 4
+indent_size = 2
