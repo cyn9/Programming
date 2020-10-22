@@ -3,7 +3,7 @@
 using namespace std;
 
 void print(const int *, size_t);
-int *applyAll(const int *const, size_t, const int *const, size_t);
+int* applyAll(const int *const, size_t, const int *const, size_t);
 
 int main(void) {
     int array1[] {1, 2, 3, 4, 5};
@@ -37,7 +37,7 @@ void print(const int *arr, size_t sz) {
 	cout << endl;
 }
 
-int *applyAll(const int *const arr1, size_t sz1, const int *const arr2, size_t sz2) {
+int* applyAll(const int *const arr1, size_t sz1, const int *const arr2, size_t sz2) {
 	int *newArr = new int[sz1 * sz2];
 	int idx = 0;
 

@@ -5,7 +5,6 @@ using std::cin;
 using std::endl;
 
 int main(void) {
-
 	int *arrayPtr {nullptr};
 	int size {};
 

@@ -6,7 +6,6 @@ using std::cout;
 using std::endl;
 
 int main(void) {
-
 	int * iPtr {nullptr};
 	iPtr = new int;				// Allocate an integer on the heap.
 
