@@ -18,7 +18,7 @@ int main(void) {
 	vector <string> myVec {"ABC", "DEF", "123"};
 
 	char myArr[8] {"Ashley"};	// C-style strings (char-arrays) are also fine.
-	string myStr {"Ashley"}
+	string myStr {"Ashley"};
 
 	print(5);
 	print(5.0);
