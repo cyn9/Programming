@@ -12,7 +12,6 @@ using namespace std;
 int main(void) {
 	string str {};
 	string temp {};
-	int myFancyIncredibleCrazyNumber {};
 
 	cout << "Please, enter a string : ";
 	getline(cin, str);
