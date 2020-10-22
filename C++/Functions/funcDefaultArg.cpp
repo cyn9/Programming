@@ -6,7 +6,6 @@ using namespace std;
 inline double calculateCost(double, double taxRate = 0.06, double shipping = 3.50);
 
 int main(void) {
-
 	double cost = calculateCost(100.0, 0.08, 4.25);
 
 	cout << fixed << setprecision(2);

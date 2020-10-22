@@ -13,7 +13,6 @@ void print(string, string);
 void print(const vector <string>);
 
 int main(void) {
-
 	cout << fixed << setprecision(2);
 
 	vector <string> myVec {"ABC", "DEF", "123"};
