@@ -26,5 +26,8 @@ bin/
 # Ignore all `library.jar` in `bin` dir
 */bin/library.jar
 
-.vscode/launch.json
-.vscode/tasks.json
+# VSCode
+.vscode/
+
+#.vscode/launch.json
+#.vscode/tasks.json
