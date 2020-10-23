@@ -5,7 +5,11 @@ using namespace std;
 unsigned long long factorial(unsigned long long);
 
 int main(void) {
-	cout << "8 ! = " << factorial(8) << endl;
+	int num {0};
+	cout << "Enter a number : ";
+	cin >> num;
+	
+	cout << num << " != " << factorial(num) << endl;
 
 	return 0;
 }
