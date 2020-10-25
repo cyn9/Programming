@@ -14,8 +14,8 @@ class User:
         return f"{self.firstName[0]}{self.lastName[0]}"
 
     def isSenior(self):
-        return f"{self.initials()} is a senior." if self.age > 65 else f"{self.initials()} is not a senior."
-
+        senior = self.age > 65
+        return f"{self.initials()} is a senior." if senior else f"{self.initials()} is not a senior."
 
 user1 = User("John", "Doe", 19)
 user1.print()
