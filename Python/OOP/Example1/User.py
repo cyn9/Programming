@@ -5,7 +5,14 @@ class User:
         self.age = age
     
     def print(self):
-        print(f"{user1.firstName} {user1.lastName}, {user1.age}")
+        print(f"{self.firstName} {self.lastName}, {self.age}")
+
+    def fullName(self):
+        return f"{self.firstName} {self.lastName}"
+    
+    def initials(self):
+        return f"{self.firstName[0]}{self.lastName[0]}"
 
 user1 = User("John", "Doe", 19)
 user1.print()
+print(user1.initials())
