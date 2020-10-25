@@ -7,32 +7,62 @@ class User:
         self.age = age
         User.activeUsers += 1
     
-    def print(self):
-        print(f"{self.firstName} {self.lastName}, {self.age}.")
-
-    def fullName(self):
-        return f"{self.firstName} {self.lastName}"
-    
-    def initials(self):
-        return f"{self.firstName[0]}{self.lastName[0]}"
-
-    def isSenior(self):
-        senior = self.age > 65
-        return f"{self.initials()} is a senior." if senior else f"{self.initials()} is not a senior."
-
-    def userLogout(self):
-        print(f"{self.fullName()} has logged out.")
-        User.activeUsers -= 1
-
-    def setUserAge(self, age):
-        self.age = age
-    
-    def getUserAge(self):
-        return self.age
-
+    # Displays the number of active users.
     @classmethod
     def displayActiveUsers(cls):
         return f"Number of active users : {cls.activeUsers}."
+
+    # Creates a new User from a string.
+    @classmethod
+    def clsFromString(cls, s):
+        firstName, lastName, age = s.split(",")
+        return cls(firstName, lastName, age)
+
+    # Prints full user information.
+    def print(self):
+        print(f"{self.firstName} {self.lastName}, {self.age}.")
+
+    # Returns fullName variable.
+    def getFullName(self):
+        return f"{self.firstName} {self.lastName}"
+    
+    # Returns initials of the User name.
+    def getInitials(self):
+        return f"{self.firstName[0]}{self.lastName[0]}"
+
+    # Returns if the User is a senior.
+    def isSenior(self):
+        senior = self.age > 65
+        return f"{self.getInitials()} is a senior." if senior else f"{self.getInitials()} is not a senior."
+
+    # Logs out the user.
+    def userLogout(self):
+        print(f"{self.getFullName()} has logged out.")
+        User.activeUsers -= 1
+
+    # Sets the variable: age
+    def setUserAge(self, age):
+        self.age = age
+    
+    # Returns the variable: age
+    def getUserAge(self):
+        return self.age
+
+    # Sets the variable: firstName
+    def setUserFirstName(self, firstName):
+        self.firstName = firstName
+    
+    # Returns the variable: firstName
+    def getUserFirstName(self):
+        return self.firstName
+
+    # Sets the variable: lastName
+    def setUserLastName(self, lastName):
+        self.lastName = lastName
+    
+    # Returns the variable: lastName
+    def getUserLastName(self):
+        return self.lastName
 
 
 print(f"Number of active users : {User.activeUsers}.")
@@ -55,3 +85,6 @@ print(user1.getUserAge())
 
 user3 = User("John", "Doe", 19)
 print(User.displayActiveUsers())
+
+user4 = User.clsFromString("Jack,Steeler,45")
+print(f"Full name is {user4.getFullName()}.")
