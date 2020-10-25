@@ -24,6 +24,13 @@ class User:
         print(f"{self.fullName()} has logged out.")
         User.activeUsers -= 1
 
+    def setUserAge(self, age):
+        self.age = age
+    
+    def getUserAge(self):
+        return self.age
+
+
 print(f"Number of users : {User.activeUsers}.")
 
 user1 = User("John", "Doe", 19)
@@ -38,3 +45,6 @@ print(f"Number of users : {User.activeUsers}.")
 
 user2.userLogout()
 print(f"Number of users : {User.activeUsers}.")
+
+user1.setUserAge(25)
+print(user1.getUserAge())
