@@ -65,7 +65,7 @@ class User:
         return self.lastName
 
 
-print(f"Number of active users : {User.activeUsers}.")
+print(User.displayActiveUsers())
 
 user1 = User("John", "Doe", 19)
 user1.print()
