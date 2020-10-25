@@ -30,8 +30,12 @@ class User:
     def getUserAge(self):
         return self.age
 
+    @classmethod
+    def displayActiveUsers(cls):
+        return f"Number of active users : {cls.activeUsers}."
 
-print(f"Number of users : {User.activeUsers}.")
+
+print(f"Number of active users : {User.activeUsers}.")
 
 user1 = User("John", "Doe", 19)
 user1.print()
@@ -41,10 +45,13 @@ print(f"Number of users : {User.activeUsers}.")
 user2 = User("Mary", "Jane", 66)
 user2.print()
 print(user2.isSenior())
-print(f"Number of users : {User.activeUsers}.")
+print(f"Number of active users : {User.activeUsers}.")
 
 user2.userLogout()
-print(f"Number of users : {User.activeUsers}.")
+print(f"Number of active users : {User.activeUsers}.")
 
 user1.setUserAge(25)
 print(user1.getUserAge())
+
+user3 = User("John", "Doe", 19)
+print(User.displayActiveUsers())
