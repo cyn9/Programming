@@ -57,21 +57,21 @@ wireExcitation.set(WIRE_EXCITATION_OPTIONS[0])
 antennaGeometry = LabelFrame(root,
                              text = "Antenna Geometry",
                              font = ("Arial", 12, "bold"),
-                             height = 130,
+                             height = 115,
                              width = 325,
                              borderwidth = 3)
 
 frequencyFrame = LabelFrame(root,
                             text = "Frequency",
                             font = ("Arial", 12, "bold"),
-                            height = 130,
+                            height = 115,
                             width = 325,
                             borderwidth = 3)
 
 MoMFrame = LabelFrame(root,
                       text = "Method of Moments",
                       font = ("Arial", 12, "bold"),
-                      height = 130,
+                      height = 115,
                       width = 325,
                       borderwidth = 3)
 
@@ -79,18 +79,18 @@ MoMFrame = LabelFrame(root,
 # Labels  #
 # # # # # #
 lbl_MonopoleLength = Label(antennaGeometry,
-                           text = "Monopole Length (m) : ", 
-                           padx = 3, 
+                           text = " Monopole Length (m) : ", 
+                           padx = 7, 
                            pady = 3)
 
 lbl_WireRadius = Label(antennaGeometry,
                        text = "Wire Radius (mm) : ", 
-                       padx = 3, 
+                       padx = 7, 
                        pady = 3)
 
 lbl_NumberOfLoads = Label(antennaGeometry, 
                           text = "Number of loads : ",
-                          padx = 3,
+                          padx = 7,
                           pady = 3)
 
 lbl_StartFreq = Label(frequencyFrame,
@@ -127,49 +127,49 @@ lbl_Excitation = Label(MoMFrame,
 # Text Fields #
 # # # # # # # #
 txt_MonopoleLength = Entry(antennaGeometry,
-                           width = 15,
+                           width = 14,
                            text = "",
                            justify = "center",
                            font = ('Arial', 12),
                            textvariable = antennaLen)
 
 txt_WireRadius = Entry(antennaGeometry,
-                       width = 15,
+                       width = 14,
                        text = "",
                        justify = "center",
                        font = ('Arial', 12),
                        textvariable = wireRadius)
 
 txt_NumberOfLoads = Entry(antennaGeometry,
-                          width = 15,
+                          width = 14,
                           text = "",
                           justify = "center",
                           font = ('Arial', 12),
                           textvariable = numOfLoads)
 
 txt_StartFreq = Entry(frequencyFrame,
-                      width = 15,
+                      width = 14,
                       text = "",
                       justify = "center",
                       font = ('Arial', 12),
                       textvariable = startFreq)
 
 txt_StopFreq = Entry(frequencyFrame,
-                     width = 15,
+                     width = 14,
                      text = "",
                      justify = "center",
                      font = ('Arial', 12),
                      textvariable = stopFreq)
 
 txt_FreqStep = Entry(frequencyFrame,
-                     width = 15,
+                     width = 14,
                      text = "",
                      justify = "center",
                      font = ('Arial', 12),
                      textvariable = freqStep)
 
 txt_NumberOfSegments = Entry(MoMFrame,
-                             width = 15,
+                             width = 14,
                              text = "",
                              justify = "center",
                              font = ('Arial', 12),
@@ -196,28 +196,31 @@ antennaGeometry.grid(row = 0, column = 0, padx = labelFramePadX, pady = labelFra
 frequencyFrame.grid(row = 1, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 MoMFrame.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 
-# # # # # # # # # # # # #
-# Placement of widgets  #
-# # # # # # # # # # # # #
-""" lbl_MonopoleLength.place(x = 9, y = 5)
-lbl_WireRadius.place(x = 30, y = 35)
-lbl_NumberOfLoads.place(x = 42, y = 65)
-txt_MonopoleLength.place(x = 172, y = 9)
-txt_WireRadius.place(x = 172, y = 39)
-txt_NumberOfLoads.place(x = 172, y = 69)
+lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
+lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
+lbl_NumberOfLoads.grid(row = 2, column = 0, sticky = "E")
+txt_MonopoleLength.grid(row = 0, column = 1, sticky = "E")
+txt_WireRadius.grid(row = 1, column = 1, sticky = "E")
+txt_NumberOfLoads.grid(row = 2, column = 1, sticky = "E")
 
-lbl_StartFreq.place(x = 0, y = 5)
-lbl_StopFreq.place(x = 0, y = 35)
-lbl_FreqStep.place(x = -0.4, y = 65)
-txt_StartFreq.place(x = 172, y = 9)
-txt_StopFreq.place(x = 172, y = 39)
-txt_FreqStep.place(x = 172, y = 69)
+lbl_StartFreq.grid(row = 0, column = 0, sticky = "E")
+lbl_StopFreq.grid(row = 1, column = 0, sticky = "E")
+lbl_FreqStep.grid(row = 2, column = 0, sticky = "E")
+txt_StartFreq.grid(row = 0, column = 1, sticky = "E")
+txt_StopFreq.grid(row = 1, column = 1, sticky = "E")
+txt_FreqStep.grid(row = 2, column = 1, sticky = "E")
 
-lbl_NumberOfSegments.place(x = 10, y = 5)
-lbl_BasisFunction.place(x = 56.7, y = 35)
-lbl_Excitation.place(x = 49, y = 65)
-txt_NumberOfSegments.place(x = 172, y = 9)
-opt_BasisFunc.place(x = 170, y = 36)
-opt_WireExcitation.place(x = 170, y = 65) """
+txt_MonopoleLength.place(x = 178, y = 3)
+txt_WireRadius.place(x = 178, y = 31)
+txt_NumberOfLoads.place(x = 178, y = 58)
+
+lbl_NumberOfSegments.grid(row = 0, column = 0, sticky = "E")
+lbl_BasisFunction.grid(row = 1, column = 0, sticky = "E")
+lbl_Excitation.grid(row = 2, column = 0, sticky = "E")
+txt_NumberOfSegments.grid(row = 0, column = 1, sticky = "E")
+
+antennaGeometry.grid_propagate(0)
+frequencyFrame.grid_propagate(0)
+MoMFrame.grid_propagate(0)
 
 root.mainloop()
