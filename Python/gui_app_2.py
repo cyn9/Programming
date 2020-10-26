@@ -186,14 +186,13 @@ txt_NumberOfSegments = Entry(MoMFrame,
 opt_BasisFunc = OptionMenu(MoMFrame,
                            basisFunc,
                            *BASIS_FUNC_OPTIONS)
-opt_BasisFunc.config(width = 16,
-                     font = "Arial 8")
 
 opt_WireExcitation = OptionMenu(MoMFrame,
                                 wireExcitation,
                                 *WIRE_EXCITATION_OPTIONS)
-opt_WireExcitation.config(width = 16,
-                          font = "Arial 8")
+
+opt_BasisFunc.config(width = 16, font = "Arial 8")
+opt_WireExcitation.config(width = 16, font = "Arial 8")
 
 # # # # # # # # # # # # #
 # Placement of widgets  #
