@@ -186,8 +186,8 @@ opt_WireExcitation = OptionMenu(MoMFrame,
                                 wireExcitation,
                                 *WIRE_EXCITATION_OPTIONS)
 
-opt_BasisFunc.config(width = 16, font = "Arial 8")
-opt_WireExcitation.config(width = 16, font = "Arial 8")
+opt_BasisFunc.config(width = 15, font = "Arial 8")
+opt_WireExcitation.config(width = 15, font = "Arial 8")
 
 # # # # # # # # # #
 # Adding to Grid  #
@@ -218,6 +218,15 @@ lbl_NumberOfSegments.grid(row = 0, column = 0, sticky = "E")
 lbl_BasisFunction.grid(row = 1, column = 0, sticky = "E")
 lbl_Excitation.grid(row = 2, column = 0, sticky = "E")
 txt_NumberOfSegments.grid(row = 0, column = 1, sticky = "E")
+opt_BasisFunc.grid(row = 1, column = 1, sticky = "E")
+opt_WireExcitation.grid(row = 2, column = 1, sticky = "E")
+
+lbl_NumberOfSegments.place(x = 10, y = 3)
+lbl_BasisFunction.place(x = 56.7, y = 31)
+lbl_Excitation.place(x = 49, y = 58)
+txt_NumberOfSegments.place(x = 175, y = 6)
+opt_BasisFunc.place(x = 173, y = 30)
+opt_WireExcitation.place(x = 173, y = 58)
 
 antennaGeometry.grid_propagate(0)
 frequencyFrame.grid_propagate(0)
