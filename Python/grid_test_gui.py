@@ -7,9 +7,9 @@ from tkinter import Entry
 from tkinter import OptionMenu
 from tkinter import StringVar
 
-appWidth = 750
+appWidth = 800
 appHeight = 750
-labelFramePadX = 12
+labelFramePadX = 6
 labelFramePadY = 2
 
 def centerWindow(width = appWidth, height = appHeight):
@@ -42,6 +42,14 @@ OPTIMIZER_OPTIONS = [ "Fmincon",
                       "Simplex Optimizer",
                       "Genetic Algorithm (GA)" ]
 
+SIM_DISPLAY_OPTIONS = [ "Off",
+                        "Iteration",
+                        "Iteration-Detailed",
+                        "Notify",
+                        "Notify-Detailed",
+                        "Final",
+                        "Final-Detailed" ]
+
 antennaLen = StringVar(root, value = 1)
 wireRadius = StringVar(root, value = 0.5)
 numOfLoads = StringVar(root, value = 1)
@@ -69,6 +77,9 @@ Z0 = StringVar(root, value = 50)
 
 optimizerFunc = StringVar(root)
 optimizerFunc.set(OPTIMIZER_OPTIONS[0])
+
+simDisplayFunc = StringVar(root)
+simDisplayFunc.set(SIM_DISPLAY_OPTIONS[0])
 
 # # # # # # # # #
 # Label Frames  #
@@ -114,6 +125,13 @@ optimizerFrame = LabelFrame(root,
                             height = 62,
                             width = 325,
                             borderwidth = 3)
+
+fminconSettings = LabelFrame(root,
+                             text = "Fmincon Settings",
+                             font = ("Arial", 12, "bold"),
+                             height = 234.3,
+                             width = 325,
+                             borderwidth = 3)
 
 # # # # # #
 # Labels  #
@@ -207,6 +225,13 @@ lbl_Z0 = Label(designGoals,
                text = "Char. Imp. (Ohm) : ",
                padx = 3,
                pady = 3)
+
+lbl_Display = Label(fminconSettings, 
+                    text = "Sim. Display : ",
+                    padx = 3,
+                    pady = 3)
+
+
 
 # # # # # # # #
 # Text Fields #
@@ -351,6 +376,7 @@ MoMFrame.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 passiveBounds.grid(row = 3, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 designGoals.grid(row = 4, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 optimizerFrame.grid(row = 5, column = 0, padx = labelFramePadX, pady = labelFramePadY)
+fminconSettings.grid(row = 0, column = 1, padx = labelFramePadX, pady = labelFramePadY, rowspan = 2)
 
 lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
 lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
@@ -433,5 +459,6 @@ MoMFrame.grid_propagate(0)
 passiveBounds.grid_propagate(0)
 designGoals.grid_propagate(0)
 optimizerFrame.grid_propagate(0)
+fminconSettings.grid_propagate(0)
 
 root.mainloop()
