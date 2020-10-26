@@ -29,14 +29,6 @@ centerWindow(appWidth, appHeight)
 # # # # # # # # # # #
 # Widget Variables  #
 # # # # # # # # # # #
-antennaLen = StringVar(root, value = 1)
-wireRadius = StringVar(root, value = 0.5)
-numOfLoads = StringVar(root, value = 1)
-startFreq = StringVar(root, value = 100)
-stopFreq = StringVar(root, value = 500)
-freqStep = StringVar(root, value = 5)
-numOfSegments = StringVar(root, value = 101)
-
 BASIS_FUNC_OPTIONS = [ "Pulse Function",
                        "Piecewise Linear",
                        "Piecewise Sine" ]
@@ -44,6 +36,19 @@ BASIS_FUNC_OPTIONS = [ "Pulse Function",
 WIRE_EXCITATION_OPTIONS = [ "Delta-Gap",
                             "Magnetic Frill",
                             "Plane Wave" ]
+
+OPTIMIZER_OPTIONS = [ "Fmincon",
+                      "Minimax Algorithm",
+                      "Simplex Optimizer",
+                      "Genetic Algorithm (GA)" ]
+
+antennaLen = StringVar(root, value = 1)
+wireRadius = StringVar(root, value = 0.5)
+numOfLoads = StringVar(root, value = 1)
+startFreq = StringVar(root, value = 100)
+stopFreq = StringVar(root, value = 500)
+freqStep = StringVar(root, value = 5)
+numOfSegments = StringVar(root, value = 101)
 
 basisFunc = StringVar(root)
 basisFunc.set(BASIS_FUNC_OPTIONS[0])
@@ -57,6 +62,13 @@ minL = StringVar(root, value = 0.01)
 maxL = StringVar(root, value = 10)
 minC = StringVar(root, value = 1)
 maxC = StringVar(root, value = 10000)
+
+desiredGain = StringVar(root, value = 0)
+desiredVSWR = StringVar(root, value = 2)
+Z0 = StringVar(root, value = 50)
+
+optimizerFunc = StringVar(root)
+optimizerFunc.set(OPTIMIZER_OPTIONS[0])
 
 # # # # # # # # #
 # Label Frames  #
@@ -88,6 +100,20 @@ passiveBounds = LabelFrame(root,
                            height = 203,
                            width = 325,
                            borderwidth = 3)
+
+designGoals = LabelFrame(root,
+                         text = "Design Goals",
+                         font = ("Arial", 12, "bold"),
+                         height = 115,
+                         width = 325,
+                         borderwidth = 3)
+
+optimizerFrame = LabelFrame(root,
+                            text = "Optimizer",
+                            font = ("Arial", 12, "bold"),
+                            height = 62,
+                            width = 325,
+                            borderwidth = 3)
 
 # # # # # #
 # Labels  #
@@ -166,6 +192,21 @@ lbl_MaxC = Label(passiveBounds,
                  text = "Maximum C (pF) : ",
                  padx = 3,
                  pady = 3)
+
+lbl_Gain = Label(designGoals, 
+                 text = "Desired Gain (dB) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_VSWR = Label(designGoals, 
+                 text = "Desired VSWR : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_Z0 = Label(designGoals, 
+               text = "Char. Imp. (Ohm) : ",
+               padx = 3,
+               pady = 3)
 
 # # # # # # # #
 # Text Fields #
@@ -261,6 +302,27 @@ txt_MaxC = Entry(passiveBounds,
                  font = ('Arial', 12),
                  textvariable = maxC)
 
+txt_Gain = Entry(designGoals,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = desiredGain)
+
+txt_VSWR = Entry(designGoals,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = desiredVSWR)
+
+txt_Z0 = Entry(designGoals,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = Z0)
+
 # # # # # # #
 # Dropdowns #
 # # # # # # #
@@ -272,8 +334,13 @@ opt_WireExcitation = OptionMenu(MoMFrame,
                                 wireExcitation,
                                 *WIRE_EXCITATION_OPTIONS)
 
+opt_Optimizer = OptionMenu(optimizerFrame,
+                           optimizerFunc,
+                           *OPTIMIZER_OPTIONS)
+
 opt_BasisFunc.config(width = 15, font = "Arial 8 bold")
 opt_WireExcitation.config(width = 15, font = "Arial 8 bold")
+opt_Optimizer.config(width = 43, font = "Arial 8 bold")
 
 # # # # # # # # # #
 # Adding to Grid  #
@@ -282,6 +349,8 @@ antennaGeometry.grid(row = 0, column = 0, padx = labelFramePadX, pady = labelFra
 frequencyFrame.grid(row = 1, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 MoMFrame.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 passiveBounds.grid(row = 3, column = 0, padx = labelFramePadX, pady = labelFramePadY)
+designGoals.grid(row = 4, column = 0, padx = labelFramePadX, pady = labelFramePadY)
+optimizerFrame.grid(row = 5, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 
 lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
 lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
@@ -290,16 +359,16 @@ txt_MonopoleLength.grid(row = 0, column = 1, sticky = "E")
 txt_WireRadius.grid(row = 1, column = 1, sticky = "E")
 txt_NumberOfLoads.grid(row = 2, column = 1, sticky = "E")
 
+txt_MonopoleLength.place(x = 178, y = 3)
+txt_WireRadius.place(x = 178, y = 31)
+txt_NumberOfLoads.place(x = 178, y = 58)
+
 lbl_StartFreq.grid(row = 0, column = 0, sticky = "E")
 lbl_StopFreq.grid(row = 1, column = 0, sticky = "E")
 lbl_FreqStep.grid(row = 2, column = 0, sticky = "E")
 txt_StartFreq.grid(row = 0, column = 1, sticky = "E")
 txt_StopFreq.grid(row = 1, column = 1, sticky = "E")
 txt_FreqStep.grid(row = 2, column = 1, sticky = "E")
-
-txt_MonopoleLength.place(x = 178, y = 3)
-txt_WireRadius.place(x = 178, y = 31)
-txt_NumberOfLoads.place(x = 178, y = 58)
 
 lbl_NumberOfSegments.grid(row = 0, column = 0, sticky = "E")
 lbl_BasisFunction.grid(row = 1, column = 0, sticky = "E")
@@ -311,9 +380,9 @@ opt_WireExcitation.grid(row = 2, column = 1, sticky = "E")
 lbl_NumberOfSegments.place(x = 10, y = 3)
 lbl_BasisFunction.place(x = 56.7, y = 31)
 lbl_Excitation.place(x = 49, y = 58)
-txt_NumberOfSegments.place(x = 175, y = 6)
-opt_BasisFunc.place(x = 174, y = 30)
-opt_WireExcitation.place(x = 174, y = 58)
+txt_NumberOfSegments.place(x = 178, y = 6)
+opt_BasisFunc.place(x = 176.2, y = 30)
+opt_WireExcitation.place(x = 176.2, y = 58)
 
 lbl_MinR.grid(row = 0, column = 0, sticky = "E")
 lbl_MaxR.grid(row = 1, column = 0, sticky = "E")
@@ -334,16 +403,35 @@ lbl_MinL.place(x = 45, y = 59)
 lbl_MaxL.place(x = 40.5, y = 87)
 lbl_MinC.place(x = 42, y = 115)
 lbl_MaxC.place(x = 37.5, y = 143)
-txt_MinR.place(x = 174, y = 7)
-txt_MaxR.place(x = 174, y = 35)
-txt_MinL.place(x = 174, y = 63)
-txt_MaxL.place(x = 174, y = 91)
-txt_MinC.place(x = 174, y = 119)
-txt_MaxC.place(x = 174, y = 147)
+txt_MinR.place(x = 178, y = 7)
+txt_MaxR.place(x = 178, y = 35)
+txt_MinL.place(x = 178, y = 63)
+txt_MaxL.place(x = 178, y = 91)
+txt_MinC.place(x = 178, y = 119)
+txt_MaxC.place(x = 178, y = 147)
+
+lbl_Gain.grid(row = 0, column = 0, sticky = "E")
+lbl_VSWR.grid(row = 1, column = 0, sticky = "E")
+lbl_Z0.grid(row = 2, column = 0, sticky = "E")
+txt_Gain.grid(row = 0, column = 1, sticky = "E")
+txt_VSWR.grid(row = 1, column = 1, sticky = "E")
+txt_Z0.grid(row = 2, column = 1, sticky = "E")
+
+lbl_Gain.place(x = 27, y = 3)
+lbl_VSWR.place(x = 45.5, y = 31)
+lbl_Z0.place(x = 36, y = 59)
+txt_Gain.place(x = 178, y = 7)
+txt_VSWR.place(x = 178, y = 35)
+txt_Z0.place(x = 178, y = 63)
+
+opt_Optimizer.grid(row = 0, column = 0, sticky = "E")
+opt_Optimizer.place(x = 8, y = 2)
 
 antennaGeometry.grid_propagate(0)
 frequencyFrame.grid_propagate(0)
 MoMFrame.grid_propagate(0)
 passiveBounds.grid_propagate(0)
+designGoals.grid_propagate(0)
+optimizerFrame.grid_propagate(0)
 
 root.mainloop()
