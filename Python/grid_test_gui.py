@@ -8,7 +8,7 @@ from tkinter import OptionMenu
 from tkinter import StringVar
 
 appWidth = 750
-appHeight = 450
+appHeight = 750
 labelFramePadX = 12
 labelFramePadY = 2
 
@@ -39,7 +39,7 @@ numOfSegments = StringVar(root, value = 101)
 
 BASIS_FUNC_OPTIONS = [ "Pulse Function",
                        "Piecewise Linear",
-                       "Piecewise Sinusoidal" ]
+                       "Piecewise Sine" ]
 
 WIRE_EXCITATION_OPTIONS = [ "Delta-Gap",
                             "Magnetic Frill",
@@ -50,6 +50,13 @@ basisFunc.set(BASIS_FUNC_OPTIONS[0])
 
 wireExcitation = StringVar(root)
 wireExcitation.set(WIRE_EXCITATION_OPTIONS[0])
+
+minR = StringVar(root, value = 1)
+maxR = StringVar(root, value = 10000)
+minL = StringVar(root, value = 0.01)
+maxL = StringVar(root, value = 10)
+minC = StringVar(root, value = 1)
+maxC = StringVar(root, value = 10000)
 
 # # # # # # # # #
 # Label Frames  #
@@ -74,6 +81,13 @@ MoMFrame = LabelFrame(root,
                       height = 115,
                       width = 325,
                       borderwidth = 3)
+
+passiveBounds = LabelFrame(root,
+                           text = "Bounds of Passives",
+                           font = ("Arial", 12, "bold"),
+                           height = 203,
+                           width = 325,
+                           borderwidth = 3)
 
 # # # # # #
 # Labels  #
@@ -122,6 +136,36 @@ lbl_Excitation = Label(MoMFrame,
                        text = "Wire Excitation : ",
                        padx = 3,
                        pady = 3)
+
+lbl_MinR = Label(passiveBounds, 
+                 text = "Minimum R (Ohm) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_MaxR = Label(passiveBounds, 
+                 text = "Maximum R (Ohm) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_MinL = Label(passiveBounds, 
+                 text = "Minimum L (uH) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_MaxL = Label(passiveBounds, 
+                 text = "Maximum L (uH) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_MinC = Label(passiveBounds, 
+                 text = "Minimum C (pF) : ",
+                 padx = 3,
+                 pady = 3)
+
+lbl_MaxC = Label(passiveBounds, 
+                 text = "Maximum C (pF) : ",
+                 padx = 3,
+                 pady = 3)
 
 # # # # # # # #
 # Text Fields #
@@ -175,6 +219,48 @@ txt_NumberOfSegments = Entry(MoMFrame,
                              font = ('Arial', 12),
                              textvariable = numOfSegments)
 
+txt_MinR = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = minR)
+
+txt_MaxR = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = maxR)
+
+txt_MinL = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = minL)
+
+txt_MaxL = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = maxL)
+
+txt_MinC = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = minC)
+
+txt_MaxC = Entry(passiveBounds,
+                 width = 14,
+                 text = "",
+                 justify = "center",
+                 font = ('Arial', 12),
+                 textvariable = maxC)
+
 # # # # # # #
 # Dropdowns #
 # # # # # # #
@@ -186,8 +272,8 @@ opt_WireExcitation = OptionMenu(MoMFrame,
                                 wireExcitation,
                                 *WIRE_EXCITATION_OPTIONS)
 
-opt_BasisFunc.config(width = 15, font = "Arial 8")
-opt_WireExcitation.config(width = 15, font = "Arial 8")
+opt_BasisFunc.config(width = 15, font = "Arial 8 bold")
+opt_WireExcitation.config(width = 15, font = "Arial 8 bold")
 
 # # # # # # # # # #
 # Adding to Grid  #
@@ -195,6 +281,7 @@ opt_WireExcitation.config(width = 15, font = "Arial 8")
 antennaGeometry.grid(row = 0, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 frequencyFrame.grid(row = 1, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 MoMFrame.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
+passiveBounds.grid(row = 3, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 
 lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
 lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
@@ -225,11 +312,38 @@ lbl_NumberOfSegments.place(x = 10, y = 3)
 lbl_BasisFunction.place(x = 56.7, y = 31)
 lbl_Excitation.place(x = 49, y = 58)
 txt_NumberOfSegments.place(x = 175, y = 6)
-opt_BasisFunc.place(x = 173, y = 30)
-opt_WireExcitation.place(x = 173, y = 58)
+opt_BasisFunc.place(x = 174, y = 30)
+opt_WireExcitation.place(x = 174, y = 58)
+
+lbl_MinR.grid(row = 0, column = 0, sticky = "E")
+lbl_MaxR.grid(row = 1, column = 0, sticky = "E")
+lbl_MinL.grid(row = 2, column = 0, sticky = "E")
+lbl_MaxL.grid(row = 3, column = 0, sticky = "E")
+lbl_MinC.grid(row = 4, column = 0, sticky = "E")
+lbl_MaxC.grid(row = 5, column = 0, sticky = "E")
+txt_MinR.grid(row = 0, column = 1, sticky = "E")
+txt_MaxR.grid(row = 1, column = 1, sticky = "E")
+txt_MinL.grid(row = 2, column = 1, sticky = "E")
+txt_MaxL.grid(row = 3, column = 1, sticky = "E")
+txt_MinC.grid(row = 4, column = 1, sticky = "E")
+txt_MaxC.grid(row = 5, column = 1, sticky = "E")
+
+lbl_MinR.place(x = 29, y = 3)
+lbl_MaxR.place(x = 24.5, y = 31)
+lbl_MinL.place(x = 45, y = 59)
+lbl_MaxL.place(x = 40.5, y = 87)
+lbl_MinC.place(x = 42, y = 115)
+lbl_MaxC.place(x = 37.5, y = 143)
+txt_MinR.place(x = 174, y = 7)
+txt_MaxR.place(x = 174, y = 35)
+txt_MinL.place(x = 174, y = 63)
+txt_MaxL.place(x = 174, y = 91)
+txt_MinC.place(x = 174, y = 119)
+txt_MaxC.place(x = 174, y = 147)
 
 antennaGeometry.grid_propagate(0)
 frequencyFrame.grid_propagate(0)
 MoMFrame.grid_propagate(0)
+passiveBounds.grid_propagate(0)
 
 root.mainloop()
