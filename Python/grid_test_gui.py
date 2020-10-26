@@ -29,12 +29,12 @@ centerWindow(appWidth, appHeight)
 # # # # # # # # # # #
 # Widget Variables  #
 # # # # # # # # # # #
-antennaLen = StringVar()
-wireRadius = StringVar()
-numOfLoads = StringVar()
-startFreq = StringVar()
-stopFreq = StringVar()
-freqStep = StringVar()
+antennaLen = StringVar(root, value = 1)
+wireRadius = StringVar(root, value = 0.5)
+numOfLoads = StringVar(root, value = 1)
+startFreq = StringVar(root, value = 100)
+stopFreq = StringVar(root, value = 500)
+freqStep = StringVar(root, value = 5)
 numOfSegments = StringVar(root, value = 101)
 
 BASIS_FUNC_OPTIONS = [ "Pulse Function",
