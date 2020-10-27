@@ -96,7 +96,7 @@ frequencyFrame = LabelFrame(root,
                             width = 325,
                             borderwidth = 3)
 
-MoMFrame = LabelFrame(root,
+frameMoM = LabelFrame(root,
                       text = "Method of Moments",
                       font = ("Arial", 12, "bold"),
                       height = 115,
@@ -164,17 +164,17 @@ lbl_FreqStep = Label(frequencyFrame,
                      padx = 3, 
                      pady = 3)
 
-lbl_NumberOfSegments = Label(MoMFrame, 
+lbl_NumberOfSegments = Label(frameMoM, 
                              text = "Number of segments : ",
                              padx = 3,
                              pady = 3)
 
-lbl_BasisFunction = Label(MoMFrame, 
+lbl_BasisFunction = Label(frameMoM, 
                           text = "Basis function : ",
                           padx = 3,
                           pady = 3)
 
-lbl_Excitation = Label(MoMFrame, 
+lbl_Excitation = Label(frameMoM, 
                        text = "Wire Excitation : ",
                        padx = 3,
                        pady = 3)
@@ -275,7 +275,7 @@ txt_FreqStep = Entry(frequencyFrame,
                      font = ('Arial', 12),
                      textvariable = freqStep)
 
-txt_NumberOfSegments = Entry(MoMFrame,
+txt_NumberOfSegments = Entry(frameMoM,
                              width = 14,
                              text = "",
                              justify = "center",
@@ -348,11 +348,11 @@ txt_Z0 = Entry(designGoals,
 # # # # # # #
 # Dropdowns #
 # # # # # # #
-opt_BasisFunc = OptionMenu(MoMFrame,
+opt_BasisFunc = OptionMenu(frameMoM,
                            basisFunc,
                            *BASIS_FUNC_OPTIONS)
 
-opt_WireExcitation = OptionMenu(MoMFrame,
+opt_WireExcitation = OptionMenu(frameMoM,
                                 wireExcitation,
                                 *WIRE_EXCITATION_OPTIONS)
 
@@ -369,7 +369,7 @@ opt_Optimizer.config(width = 43, font = "Arial 8 bold")
 # # # # # # # # # #
 antennaGeometry.grid(row = 0, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 frequencyFrame.grid(row = 1, column = 0, padx = labelFramePadX, pady = labelFramePadY)
-MoMFrame.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
+frameMoM.grid(row = 2, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 passiveBounds.grid(row = 3, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 designGoals.grid(row = 4, column = 0, padx = labelFramePadX, pady = labelFramePadY)
 optimizerFrame.grid(row = 5, column = 0, padx = labelFramePadX, pady = labelFramePadY)
@@ -422,7 +422,7 @@ opt_Optimizer.place(x = 8, y = 2)
 
 antennaGeometry.grid_propagate(0)
 frequencyFrame.grid_propagate(0)
-MoMFrame.grid_propagate(0)
+frameMoM.grid_propagate(0)
 passiveBounds.grid_propagate(0)
 designGoals.grid_propagate(0)
 optimizerFrame.grid_propagate(0)
