@@ -48,6 +48,10 @@ SIM_DISPLAY_OPTIONS = [ "Off",
                         "Final",
                         "Final-Detailed" ]
 
+FMINCON_ALGORITHMS = [ "Active-Set",
+                       "Interior-Point",
+                       "SQP" ]
+
 antennaLen = tk.StringVar(root, value = 1)
 wireRadius = tk.StringVar(root, value = 0.5)
 numOfLoads = tk.StringVar(root, value = 1)
@@ -76,8 +80,15 @@ chZ0 = tk.StringVar(root, value = 50)
 optimizerFunc = tk.StringVar(root)
 optimizerFunc.set(OPTIMIZER_OPTIONS[0])
 
-simDisplayFunc = tk.StringVar(root)
-simDisplayFunc.set(SIM_DISPLAY_OPTIONS[0])
+fminconDisplay = tk.StringVar(root)
+fminconDisplay.set(SIM_DISPLAY_OPTIONS[1])
+
+maxFunEval = tk.StringVar(root, value = 10000)
+maxIter = tk.StringVar(root, value = 100)
+tolFun = tk.StringVar(root, value = 0.001)
+
+fminconAlgo = tk.StringVar(root)
+fminconAlgo.set(FMINCON_ALGORITHMS[0])
 
 # # # # # # # # #
 # Label Frames  #
@@ -229,6 +240,25 @@ lbl_Display = Label(fminconSettings,
                     padx = 3,
                     pady = 3)
 
+lbl_MaxFunEval = Label(fminconSettings, 
+                       text = "Max. Fun. Eval : ",
+                       padx = 3,
+                       pady = 3)
+
+lbl_MaxIter = Label(fminconSettings, 
+                    text = "Max. Iteration : ",
+                    padx = 3,
+                    pady = 3)
+
+lbl_TolFun = Label(fminconSettings, 
+                   text = "Tol. Function : ",
+                   padx = 3,
+                   pady = 3)
+
+lbl_FminconAlgo = Label(fminconSettings, 
+                        text = "Algorithm : ",
+                        padx = 3,
+                        pady = 3)
 
 # # # # # # # #
 # Text Fields #
@@ -339,11 +369,32 @@ txt_VSWR = Entry(designGoals,
                  textvariable = desiredVSWR)
 
 txt_Z0 = Entry(designGoals,
-                 width = 14,
-                 text = "",
-                 justify = "center",
-                 font = ('Arial', 12),
-                 textvariable = chZ0)
+               width = 14,
+               text = "",
+               justify = "center",
+               font = ('Arial', 12),
+               textvariable = chZ0)
+
+txt_MaxFunEval = Entry(fminconSettings,
+                       width = 14,
+                       text = "",
+                       justify = "center",
+                       font = ('Arial', 12),
+                       textvariable = maxFunEval)
+
+txt_MaxIter = Entry(fminconSettings,
+                    width = 14,
+                    text = "",
+                    justify = "center",
+                    font = ('Arial', 12),
+                    textvariable = maxIter)
+
+txt_TolFun = Entry(fminconSettings,
+                   width = 14,
+                   text = "",
+                   justify = "center",
+                   font = ('Arial', 12),
+                   textvariable = tolFun)
 
 # # # # # # #
 # Dropdowns #
@@ -360,9 +411,19 @@ opt_Optimizer = OptionMenu(optimizerFrame,
                            optimizerFunc,
                            *OPTIMIZER_OPTIONS)
 
+opt_fminconDisplay = OptionMenu(fminconSettings,
+                                fminconDisplay,
+                                *SIM_DISPLAY_OPTIONS)
+
+opt_fminconAlgorithm = OptionMenu(fminconSettings, 
+                                  fminconAlgo,
+                                  *FMINCON_ALGORITHMS)
+
 opt_BasisFunc.config(width = 15, font = "Arial 8 bold")
 opt_WireExcitation.config(width = 15, font = "Arial 8 bold")
 opt_Optimizer.config(width = 43, font = "Arial 8 bold")
+opt_fminconDisplay.config(width = 15, font = "Arial 8 bold")
+opt_fminconAlgorithm.config(width = 15, font = "Arial 8 bold")
 
 # # # # # # # # # #
 # Adding to Grid  #
@@ -419,6 +480,18 @@ txt_Z0.place(x = 178, y = 63)
 
 opt_Optimizer.grid(row = 0, column = 0, sticky = "E")
 opt_Optimizer.place(x = 8, y = 2)
+
+lbl_Display.place(x = 64, y = 3)
+lbl_MaxFunEval.place(x = 51, y = 31)
+lbl_MaxIter.place(x = 59.5, y = 59)
+lbl_TolFun.place(x = 63.2, y = 87)
+lbl_FminconAlgo.place(x = 85, y = 115)
+
+opt_fminconDisplay.place(x = 176, y = 2)
+txt_MaxFunEval.place(x = 178, y = 35)
+txt_MaxIter.place(x = 178, y = 63)
+txt_TolFun.place(x = 178, y = 91)
+opt_fminconAlgorithm.place(x = 176, y = 115)
 
 antennaGeometry.grid_propagate(0)
 frequencyFrame.grid_propagate(0)
