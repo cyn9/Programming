@@ -1,11 +1,9 @@
 import tkinter as tk
 
-from tkinter import Tk
 from tkinter import Label
 from tkinter import LabelFrame
 from tkinter import Entry
 from tkinter import OptionMenu
-from tkinter import StringVar
 
 appWidth = 800
 appHeight = 750
@@ -20,7 +18,7 @@ def centerWindow(width = appWidth, height = appHeight):
     y = hs/2 - height/2
     root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
-root = Tk()
+root = tk.Tk()
 root.title("Antenna Design Tool")
 root.option_add("*Font", "Arial")
 root.resizable(0, 0)
@@ -50,35 +48,35 @@ SIM_DISPLAY_OPTIONS = [ "Off",
                         "Final",
                         "Final-Detailed" ]
 
-antennaLen = StringVar(root, value = 1)
-wireRadius = StringVar(root, value = 0.5)
-numOfLoads = StringVar(root, value = 1)
-startFreq = StringVar(root, value = 100)
-stopFreq = StringVar(root, value = 500)
-freqStep = StringVar(root, value = 5)
-numOfSegments = StringVar(root, value = 101)
+antennaLen = tk.StringVar(root, value = 1)
+wireRadius = tk.StringVar(root, value = 0.5)
+numOfLoads = tk.StringVar(root, value = 1)
+startFreq = tk.StringVar(root, value = 100)
+stopFreq = tk.StringVar(root, value = 500)
+freqStep = tk.StringVar(root, value = 5)
+numOfSegments = tk.StringVar(root, value = 101)
 
-basisFunc = StringVar(root)
+basisFunc = tk.StringVar(root)
 basisFunc.set(BASIS_FUNC_OPTIONS[0])
 
-wireExcitation = StringVar(root)
+wireExcitation = tk.StringVar(root)
 wireExcitation.set(WIRE_EXCITATION_OPTIONS[0])
 
-minR = StringVar(root, value = 1)
-maxR = StringVar(root, value = 10000)
-minL = StringVar(root, value = 0.01)
-maxL = StringVar(root, value = 10)
-minC = StringVar(root, value = 1)
-maxC = StringVar(root, value = 10000)
+minR = tk.StringVar(root, value = 1)
+maxR = tk.StringVar(root, value = 10000)
+minL = tk.StringVar(root, value = 0.01)
+maxL = tk.StringVar(root, value = 10)
+minC = tk.StringVar(root, value = 1)
+maxC = tk.StringVar(root, value = 10000)
 
-desiredGain = StringVar(root, value = 0)
-desiredVSWR = StringVar(root, value = 2)
-Z0 = StringVar(root, value = 50)
+desiredGain = tk.StringVar(root, value = 0)
+desiredVSWR = tk.StringVar(root, value = 2)
+chZ0 = tk.StringVar(root, value = 50)
 
-optimizerFunc = StringVar(root)
+optimizerFunc = tk.StringVar(root)
 optimizerFunc.set(OPTIMIZER_OPTIONS[0])
 
-simDisplayFunc = StringVar(root)
+simDisplayFunc = tk.StringVar(root)
 simDisplayFunc.set(SIM_DISPLAY_OPTIONS[0])
 
 # # # # # # # # #
@@ -232,7 +230,6 @@ lbl_Display = Label(fminconSettings,
                     pady = 3)
 
 
-
 # # # # # # # #
 # Text Fields #
 # # # # # # # #
@@ -346,7 +343,7 @@ txt_Z0 = Entry(designGoals,
                  text = "",
                  justify = "center",
                  font = ('Arial', 12),
-                 textvariable = Z0)
+                 textvariable = chZ0)
 
 # # # # # # #
 # Dropdowns #
@@ -381,9 +378,6 @@ fminconSettings.grid(row = 0, column = 1, padx = labelFramePadX, pady = labelFra
 lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
 lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
 lbl_NumberOfLoads.grid(row = 2, column = 0, sticky = "E")
-txt_MonopoleLength.grid(row = 0, column = 1, sticky = "E")
-txt_WireRadius.grid(row = 1, column = 1, sticky = "E")
-txt_NumberOfLoads.grid(row = 2, column = 1, sticky = "E")
 
 txt_MonopoleLength.place(x = 178, y = 3)
 txt_WireRadius.place(x = 178, y = 31)
@@ -396,32 +390,12 @@ txt_StartFreq.grid(row = 0, column = 1, sticky = "E")
 txt_StopFreq.grid(row = 1, column = 1, sticky = "E")
 txt_FreqStep.grid(row = 2, column = 1, sticky = "E")
 
-lbl_NumberOfSegments.grid(row = 0, column = 0, sticky = "E")
-lbl_BasisFunction.grid(row = 1, column = 0, sticky = "E")
-lbl_Excitation.grid(row = 2, column = 0, sticky = "E")
-txt_NumberOfSegments.grid(row = 0, column = 1, sticky = "E")
-opt_BasisFunc.grid(row = 1, column = 1, sticky = "E")
-opt_WireExcitation.grid(row = 2, column = 1, sticky = "E")
-
 lbl_NumberOfSegments.place(x = 10, y = 3)
 lbl_BasisFunction.place(x = 56.7, y = 31)
 lbl_Excitation.place(x = 49, y = 58)
 txt_NumberOfSegments.place(x = 178, y = 6)
 opt_BasisFunc.place(x = 176.2, y = 30)
 opt_WireExcitation.place(x = 176.2, y = 58)
-
-lbl_MinR.grid(row = 0, column = 0, sticky = "E")
-lbl_MaxR.grid(row = 1, column = 0, sticky = "E")
-lbl_MinL.grid(row = 2, column = 0, sticky = "E")
-lbl_MaxL.grid(row = 3, column = 0, sticky = "E")
-lbl_MinC.grid(row = 4, column = 0, sticky = "E")
-lbl_MaxC.grid(row = 5, column = 0, sticky = "E")
-txt_MinR.grid(row = 0, column = 1, sticky = "E")
-txt_MaxR.grid(row = 1, column = 1, sticky = "E")
-txt_MinL.grid(row = 2, column = 1, sticky = "E")
-txt_MaxL.grid(row = 3, column = 1, sticky = "E")
-txt_MinC.grid(row = 4, column = 1, sticky = "E")
-txt_MaxC.grid(row = 5, column = 1, sticky = "E")
 
 lbl_MinR.place(x = 29, y = 3)
 lbl_MaxR.place(x = 24.5, y = 31)
@@ -435,13 +409,6 @@ txt_MinL.place(x = 178, y = 63)
 txt_MaxL.place(x = 178, y = 91)
 txt_MinC.place(x = 178, y = 119)
 txt_MaxC.place(x = 178, y = 147)
-
-lbl_Gain.grid(row = 0, column = 0, sticky = "E")
-lbl_VSWR.grid(row = 1, column = 0, sticky = "E")
-lbl_Z0.grid(row = 2, column = 0, sticky = "E")
-txt_Gain.grid(row = 0, column = 1, sticky = "E")
-txt_VSWR.grid(row = 1, column = 1, sticky = "E")
-txt_Z0.grid(row = 2, column = 1, sticky = "E")
 
 lbl_Gain.place(x = 27, y = 3)
 lbl_VSWR.place(x = 45.5, y = 31)
