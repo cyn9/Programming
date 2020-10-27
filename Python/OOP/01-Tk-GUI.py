@@ -20,6 +20,7 @@ class App:
         self.appMenu.add_cascade(label = "File", menu = self.subMenu)
         self.subMenu.add_command(label = "New Project", command = self.newProject)
         self.subMenu.add_command(label = "Load Project", command = self.loadProject)
+        self.subMenu.add_separator()
         self.subMenu.add_command(label = "Exit", command = master.destroy)
 
 
