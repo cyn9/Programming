@@ -18,6 +18,11 @@ def centerWindow(width = appWidth, height = appHeight):
     y = hs/2 - height/2
     root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
+
+def show(_=None):
+    print("Selected value :", optimizerFunc.get())
+
+
 root = tk.Tk()
 root.title("Antenna Design Tool")
 root.option_add("*Font", "Arial")
@@ -409,6 +414,7 @@ opt_WireExcitation = OptionMenu(frameMoM,
 
 opt_Optimizer = OptionMenu(optimizerFrame,
                            optimizerFunc,
+                           command = show,
                            *OPTIMIZER_OPTIONS)
 
 opt_fminconDisplay = OptionMenu(fminconSettings,
