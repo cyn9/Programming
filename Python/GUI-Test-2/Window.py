@@ -31,8 +31,6 @@ class Window:
     appWidth = 800
     appHeight = 750
 
-    ''' Init function '''
-
     def __init__(self, root):
         ''' Class Variables '''
         self.labelFramePadX = 6
@@ -518,9 +516,8 @@ class Window:
         ''' Main Loop for Root '''
         self.root.mainloop()
 
-    ''' Starting window at the center of the screen '''
-
     def centerWindow(self, width=appWidth, height=appHeight):
+        ''' Starting window at the center of the screen '''
         ws = self.root.winfo_screenwidth()
         hs = self.root.winfo_screenheight()
 
