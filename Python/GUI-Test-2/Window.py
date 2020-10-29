@@ -525,6 +525,20 @@ class Window:
         y = hs/2 - height/2
         self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
-    @staticmethod
-    def show(self):
-        print("Selected value :", self.optimizerFunc.get())
+    def show(self, *args):
+        print("Clicked! :", self.optimizerFunc.get())
+
+        if (self.optimizerFunc.get() != "Fmincon"):
+            self.hideMe()
+        else:
+            self.showMe()
+
+    def hideMe(self):
+        self.fminconSettings.grid_forget()
+
+    def showMe(self):
+        self.fminconSettings.grid(
+            row=0, column=1, padx=self.labelFramePadX, pady=self.labelFramePadY, rowspan=2)
+        self.opt_fminconDisplay.place(x=176, y=2)
+        self.opt_fminconAlgorithm.place(x=176, y=115)
+
