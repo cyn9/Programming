@@ -183,7 +183,7 @@ class Window:
                                        padx=3,
                                        pady=3)
 
-        ''' Labels in MoM Panel '''
+        ''' Labels in Bounds Panel '''
         self.lbl_MinR = tk.Label(self.passiveBounds,
                                  text="Minimum R (Ohm) : ",
                                  padx=3,
@@ -229,6 +229,32 @@ class Window:
                                text="Char. Imp. (Ohm) : ",
                                padx=3,
                                pady=3)
+
+        ''' Labels in Fmincon Options '''
+        self.lbl_Display = tk.Label(self.fminconSettings,
+                                    text="Sim. Display : ",
+                                    padx=3,
+                                    pady=3)
+
+        self.lbl_MaxFunEval = tk.Label(self.fminconSettings,
+                                       text="Max. Fun. Eval : ",
+                                       padx=3,
+                                       pady=3)
+
+        self.lbl_MaxIter = tk.Label(self.fminconSettings,
+                                    text="Max. Iteration : ",
+                                    padx=3,
+                                    pady=3)
+
+        self.lbl_TolFun = tk.Label(self.fminconSettings,
+                                   text="Tol. Function : ",
+                                   padx=3,
+                                   pady=3)
+
+        self.lbl_FminconAlgo = tk.Label(self.fminconSettings,
+                                        text="Algorithm : ",
+                                        padx=3,
+                                        pady=3)
 
         ''' TEXT FIELDS '''
         ''' Text Fields in Monopole Length Panel '''
@@ -348,6 +374,28 @@ class Window:
                                font=('Arial', 12),
                                textvariable=self.chZ0)
 
+        ''' Text Fields in Fmincon Panel '''
+        self.txt_MaxFunEval = tk.Entry(self.fminconSettings,
+                                       width=14,
+                                       text="",
+                                       justify="center",
+                                       font=('Arial', 12),
+                                       textvariable=self.maxFunEval)
+
+        self.txt_MaxIter = tk.Entry(self.fminconSettings,
+                                    width=14,
+                                    text="",
+                                    justify="center",
+                                    font=('Arial', 12),
+                                    textvariable=self.maxIter)
+
+        self.txt_TolFun = tk.Entry(self.fminconSettings,
+                                   width=14,
+                                   text="",
+                                   justify="center",
+                                   font=('Arial', 12),
+                                   textvariable=self.tolFun)
+
         ''' Dropdowns '''
         self.opt_BasisFunc = tk.OptionMenu(self.frameMoM,
                                            self.basisFunc,
@@ -416,6 +464,12 @@ class Window:
         self.lbl_VSWR.place(x=45.5, y=31)
         self.lbl_Z0.place(x=36, y=59)
 
+        self.lbl_Display.place(x=64, y=3)
+        self.lbl_MaxFunEval.place(x=51, y=31)
+        self.lbl_MaxIter.place(x=59.5, y=59)
+        self.lbl_TolFun.place(x=63.2, y=87)
+        self.lbl_FminconAlgo.place(x=85, y=115)
+
         ''' Adding Text Boxes into the Panels  '''
         self.txt_MonopoleLength.place(x=178, y=3)
         self.txt_WireRadius.place(x=178, y=31)
@@ -437,6 +491,10 @@ class Window:
         self.txt_Gain.place(x=178, y=7)
         self.txt_VSWR.place(x=178, y=35)
         self.txt_Z0.place(x=178, y=63)
+
+        self.txt_MaxFunEval.place(x=178, y=35)
+        self.txt_MaxIter.place(x=178, y=63)
+        self.txt_TolFun.place(x=178, y=91)
 
         ''' Adding Dropdowns into the Panels  '''
         self.opt_BasisFunc.place(x=176.2, y=30)
@@ -470,5 +528,6 @@ class Window:
         y = hs/2 - height/2
         self.root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
+    @staticmethod
     def show(self):
         print("Selected value :", self.optimizerFunc.get())
