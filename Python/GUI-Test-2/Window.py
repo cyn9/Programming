@@ -541,4 +541,3 @@ class Window:
             row=0, column=1, padx=self.labelFramePadX, pady=self.labelFramePadY, rowspan=2)
         self.opt_fminconDisplay.place(x=176, y=2)
         self.opt_fminconAlgorithm.place(x=176, y=115)
-
