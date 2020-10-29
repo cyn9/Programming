@@ -4,8 +4,9 @@ import tkinter as tk
 
 def main():
     root = tk.Tk()
+    winApp = Window(root)
 
-    window1 = Window(root)
+    root.mainloop()
 
 
 main()

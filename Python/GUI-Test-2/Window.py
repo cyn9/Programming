@@ -1,17 +1,292 @@
 import tkinter as tk
 
+''' OptionMenu Lists '''
+BASIS_FUNC_OPTIONS = [ "Pulse Function",
+                       "Piecewise Linear",
+                       "Piecewise Sine" ]
+
+WIRE_EXCITATION_OPTIONS = [ "Delta-Gap",
+                            "Magnetic Frill",
+                            "Plane Wave" ]
+
+OPTIMIZER_OPTIONS = [ "Fmincon",
+                      "Minimax Algorithm",
+                      "Simplex Optimizer",
+                      "Genetic Algorithm (GA)" ]
+
+SIM_DISPLAY_OPTIONS = [ "Off",
+                        "Iteration",
+                        "Iteration-Detailed",
+                        "Notify",
+                        "Notify-Detailed",
+                        "Final",
+                        "Final-Detailed" ]
+
+FMINCON_ALGORITHMS = [ "Active-Set",
+                       "Interior-Point",
+                       "SQP" ]
+
 class Window:
-    n = 0
     appWidth = 800
     appHeight = 750
     
     ''' Init function '''
     def __init__(self, root):
+        ''' Class Variables '''
+        self.labelFramePadX = 6
+        self.labelFramePadY = 2
+
+        ''' Widget Variables '''
+        self.antennaLen = tk.StringVar(root, value = 1)
+        self.wireRadius = tk.StringVar(root, value = 0.5)
+        self.numOfLoads = tk.StringVar(root, value = 1)
+        self.startFreq = tk.StringVar(root, value = 100)
+        self.stopFreq = tk.StringVar(root, value = 500)
+        self.freqStep = tk.StringVar(root, value = 5)
+        self.numOfSegments = tk.StringVar(root, value = 101)
+
+        self.basisFunc = tk.StringVar(root)
+        self.basisFunc.set(BASIS_FUNC_OPTIONS[0])
+
+        self.wireExcitation = tk.StringVar(root)
+        self.wireExcitation.set(WIRE_EXCITATION_OPTIONS[0])
+
+        self.minR = tk.StringVar(root, value = 1)
+        self.maxR = tk.StringVar(root, value = 10000)
+        self.minL = tk.StringVar(root, value = 0.01)
+        self.maxL = tk.StringVar(root, value = 10)
+        self.minC = tk.StringVar(root, value = 1)
+        self.maxC = tk.StringVar(root, value = 10000)
+
+        self.desiredGain = tk.StringVar(root, value = 0)
+        self.desiredVSWR = tk.StringVar(root, value = 2)
+        self.chZ0 = tk.StringVar(root, value = 50)
+
+        self.optimizerFunc = tk.StringVar(root)
+        self.optimizerFunc.set(OPTIMIZER_OPTIONS[0])
+
+        self.fminconDisplay = tk.StringVar(root)
+        self.fminconDisplay.set(SIM_DISPLAY_OPTIONS[1])
+
+        self.maxFunEval = tk.StringVar(root, value = 10000)
+        self.maxIter = tk.StringVar(root, value = 100)
+        self.tolFun = tk.StringVar(root, value = 0.001)
+
+        self.fminconAlgo = tk.StringVar(root)
+        self.fminconAlgo.set(FMINCON_ALGORITHMS[0])
+
+        ''' Root Properties '''
         self.root = root
         self.root.title = "Antenna Design Tool"
         self.root.option_add("*Font", "Arial")
         self.root.resizable(0, 0)
-        self.centerWindow(800, 750)
+        self.centerWindow()
+
+        ''' Panel Definitions '''
+        self.antennaGeometry = tk.LabelFrame(root,
+                                             text = "Antenna Geometry",
+                                             font = ("Arial", 12, "bold"),
+                                             height = 115,
+                                             width = 325,
+                                             borderwidth = 3)
+        
+        self.frequencyFrame = tk.LabelFrame(root,
+                                            text = "Frequency",
+                                            font = ("Arial", 12, "bold"),
+                                            height = 115,
+                                            width = 325,
+                                            borderwidth = 3)
+
+        self.frameMoM = tk.LabelFrame(root,
+                                      text = "Method of Moments",
+                                      font = ("Arial", 12, "bold"),
+                                      height = 115,
+                                      width = 325,
+                                      borderwidth = 3)
+
+        self.passiveBounds = tk.LabelFrame(root,
+                                           text = "Bounds of Passives",
+                                           font = ("Arial", 12, "bold"),
+                                           height = 203,
+                                           width = 325,
+                                           borderwidth = 3)
+
+        self.designGoals = tk.LabelFrame(root,
+                                         text = "Design Goals",
+                                         font = ("Arial", 12, "bold"),
+                                         height = 115,
+                                         width = 325,
+                                         borderwidth = 3)
+
+        self.optimizerFrame = tk.LabelFrame(root,
+                                            text = "Optimizer",
+                                            font = ("Arial", 12, "bold"),
+                                            height = 62,
+                                            width = 325,
+                                            borderwidth = 3)
+
+        self.fminconSettings = tk.LabelFrame(root,
+                                             text = "Fmincon Settings",
+                                             font = ("Arial", 12, "bold"),
+                                             height = 234.3,
+                                             width = 325,
+                                             borderwidth = 3)
+
+        ''' Labels in Monopole Length Panel '''
+        self.lbl_MonopoleLength = tk.Label(self.antennaGeometry,
+                                           text = " Monopole Length (m) : ", 
+                                           padx = 7, 
+                                           pady = 3)
+
+        self.lbl_WireRadius = tk.Label(self.antennaGeometry,
+                                       text = "Wire Radius (mm) : ", 
+                                       padx = 7, 
+                                       pady = 3)
+
+        self.lbl_NumberOfLoads = tk.Label(self.antennaGeometry, 
+                                          text = "Number of loads : ",
+                                          padx = 7,
+                                          pady = 3)
+
+        ''' Labels in Frequency Panel '''
+        self.lbl_StartFreq = tk.Label(self.frequencyFrame,
+                                      text = "Start Frequency (MHz) : ", 
+                                      padx = 3, 
+                                      pady = 3)
+
+        self.lbl_StopFreq = tk.Label(self.frequencyFrame,
+                                     text = "Stop Frequency (MHz) : ", 
+                                     padx = 3, 
+                                     pady = 3)
+
+        self.lbl_FreqStep = tk.Label(self.frequencyFrame,
+                                     text = "Frequency Step (MHz) : ", 
+                                     padx = 3, 
+                                     pady = 3)
+        
+        ''' Labels in MoM Panel '''
+        self.lbl_NumberOfSegments = tk.Label(self.frameMoM, 
+                                             text = "Number of segments : ",
+                                             padx = 3,
+                                             pady = 3)
+
+        self.lbl_BasisFunction = tk.Label(self.frameMoM, 
+                                          text = "Basis function : ",
+                                          padx = 3,
+                                          pady = 3)
+
+        self.lbl_Excitation = tk.Label(self.frameMoM, 
+                                       text = "Wire Excitation : ",
+                                       padx = 3,
+                                       pady = 3)
+
+        ''' Text Fields in Monopole Length Panel '''
+        self.txt_MonopoleLength = tk.Entry(self.antennaGeometry,
+                                            width = 14,
+                                            text = "",
+                                            justify = "center",
+                                            font = ('Arial', 12),
+                                            textvariable = self.antennaLen)
+
+        self.txt_WireRadius = tk.Entry(self.antennaGeometry,
+                                       width = 14,
+                                       text = "",
+                                       justify = "center",
+                                       font = ('Arial', 12),
+                                       textvariable = self.wireRadius)
+
+        self.txt_NumberOfLoads = tk.Entry(self.antennaGeometry,
+                                          width = 14,
+                                          text = "",
+                                          justify = "center",
+                                          font = ('Arial', 12),
+                                          textvariable = self.numOfLoads)
+
+        ''' Text Fields in Frequency Panel '''
+        self.txt_StartFreq = tk.Entry(self.frequencyFrame,
+                                      width = 14,
+                                      text = "",
+                                      justify = "center",
+                                      font = ('Arial', 12),
+                                      textvariable = self.startFreq)
+
+        self.txt_StopFreq = tk.Entry(self.frequencyFrame,
+                                     width = 14,
+                                     text = "",
+                                     justify = "center",
+                                     font = ('Arial', 12),
+                                     textvariable = self.stopFreq)
+
+        self.txt_FreqStep = tk.Entry(self.frequencyFrame,
+                                     width = 14,
+                                     text = "",
+                                     justify = "center",
+                                     font = ('Arial', 12),
+                                     textvariable = self.freqStep)
+
+        ''' Text Fields in MoM Panel '''
+        self.txt_NumberOfSegments = tk.Entry(self.frameMoM,
+                                             width = 14,
+                                             text = "",
+                                             justify = "center",
+                                             font = ('Arial', 12),
+                                             textvariable = self.numOfSegments)
+        ''' Dropdowns '''
+        self.opt_BasisFunc = tk.OptionMenu(self.frameMoM,
+                                           self.basisFunc,
+                                           *BASIS_FUNC_OPTIONS)
+
+        self.opt_WireExcitation = tk.OptionMenu(self.frameMoM,
+                                                self.wireExcitation,
+                                                *WIRE_EXCITATION_OPTIONS)
+
+        self.opt_Optimizer = tk.OptionMenu(self.optimizerFrame,
+                                           self.optimizerFunc,
+                                           command = self.show,
+                                           *OPTIMIZER_OPTIONS)
+
+        self.opt_fminconDisplay = tk.OptionMenu(self.fminconSettings,
+                                                self.fminconDisplay,
+                                                *SIM_DISPLAY_OPTIONS)
+
+        self.opt_fminconAlgorithm = tk.OptionMenu(self.fminconSettings, 
+                                                  self.fminconAlgo,
+                                                  *FMINCON_ALGORITHMS)
+
+        self.opt_BasisFunc.config(width = 15, font = "Arial 8 bold")
+        self.opt_WireExcitation.config(width = 15, font = "Arial 8 bold")
+        self.opt_Optimizer.config(width = 43, font = "Arial 8 bold")
+        self.opt_fminconDisplay.config(width = 15, font = "Arial 8 bold")
+        self.opt_fminconAlgorithm.config(width = 15, font = "Arial 8 bold")
+
+        ''' Placing Panels into the Grid '''
+        self.antennaGeometry.grid(row = 0, column = 0, padx = self.labelFramePadX, pady = self.labelFramePadY)
+        self.frequencyFrame.grid(row = 1, column = 0, padx = self.labelFramePadX, pady = self.labelFramePadY)
+        self.frameMoM.grid(row = 2, column = 0, padx = self.labelFramePadX, pady = self.labelFramePadY)
+
+        ''' Placing Labels into the Panels  '''
+        self.lbl_MonopoleLength.grid(row = 0, column = 0, sticky = "E")
+        self.lbl_WireRadius.grid(row = 1, column = 0, sticky = "E")
+        self.lbl_NumberOfLoads.grid(row = 2, column = 0, sticky = "E")
+
+        self.lbl_StartFreq.grid(row = 0, column = 0, sticky = "E")
+        self.lbl_StopFreq.grid(row = 1, column = 0, sticky = "E")
+        self.lbl_FreqStep.grid(row = 2, column = 0, sticky = "E")
+
+        self.lbl_NumberOfSegments.place(x = 10, y = 3)
+        self.lbl_BasisFunction.place(x = 56.7, y = 31)
+        self.lbl_Excitation.place(x = 49, y = 58)
+
+        ''' Placing Text Boxes into the Panels  '''
+        self.txt_MonopoleLength.place(x = 178, y = 3)
+        self.txt_WireRadius.place(x = 178, y = 31)
+        self.txt_NumberOfLoads.place(x = 178, y = 58)
+
+        self.txt_StartFreq.grid(row = 0, column = 1, sticky = "E")
+        self.txt_StopFreq.grid(row = 1, column = 1, sticky = "E")
+        self.txt_FreqStep.grid(row = 2, column = 1, sticky = "E")
+
+        self.txt_NumberOfSegments.place(x = 178, y = 6)
 
         self.root.mainloop()
 
