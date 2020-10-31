@@ -30,4 +30,4 @@ bin/
 .vscode/
 
 # Ignore UI files (if exists)
-.ui
+*.ui
