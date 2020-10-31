@@ -28,3 +28,6 @@ bin/
 
 # VSCode
 .vscode/
+
+# Ignore UI files (if exists)
+.ui
