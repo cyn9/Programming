@@ -14,11 +14,11 @@ class LayoutExample(QWidget):
     def __init__(self):
         super().__init__()
 
+        self.initWidgets()
+        self.initWidgetFonts()
         self.initialize()
-    
-    def initialize(self):
-        self.font = QFont("Arial", 11)
 
+    def initWidgets(self):
         self.m_lblUsername  = QLabel("Username : ")
         self.m_lblTitle     = QLabel("Title : ")
         self.m_lblMessage   = QLabel("Message : ")
@@ -29,6 +29,9 @@ class LayoutExample(QWidget):
 
         self.m_btnSubmit    = QPushButton("Submit")
         self.m_btnClear     = QPushButton("Clear")
+    
+    def initWidgetFonts(self):
+        self.font = QFont("Arial", 11)
 
         self.grid = QGridLayout()
         self.grid.setSpacing(10)
@@ -42,6 +45,7 @@ class LayoutExample(QWidget):
         self.m_btnSubmit.setFont(self.font)
         self.m_btnClear.setFont(self.font)
 
+    def initialize(self):
         self.grid.addWidget(self.m_lblUsername, 1, 0)
         self.grid.addWidget(self.m_txtUsername, 1, 1)
 
