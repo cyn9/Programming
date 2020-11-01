@@ -7,7 +7,7 @@ import numpy as np
 
 from PyQt5.Qt import QPen
 
-from PyQt5.QtChart import QCategoryAxis
+from PyQt5.QtChart import QValueAxis
 from PyQt5.QtChart import QChart
 from PyQt5.QtChart import QChartView
 from PyQt5.QtChart import QLineSeries
@@ -25,7 +25,6 @@ class Window(QMainWindow):
 
         self.setWindowTitle("PyQtChart Demo")
         self.setGeometry(500, 275, 650, 500)
-        
 
         self.show()
         self.createLineChart()
@@ -35,15 +34,8 @@ class Window(QMainWindow):
         self.font.setPixelSize(16)
         self.font.setBold(True)
 
-        self.axisLabelFont = QFont("Arial")
-        self.axisLabelFont.setPixelSize(14)
-        self.axisLabelFont.setBold(True)
-
         self.pen = QPen(QColor(0, 153, 0))
         self.pen.setWidth(3)
-
-        self.axisPen = QPen(QColor(0, 0, 0))
-        self.axisPen.setWidth(2)
         
         self.series = QLineSeries(self)
         self.series.setPen(self.pen)
@@ -53,18 +45,8 @@ class Window(QMainWindow):
         for i in self.x:
             self.series.append(i, np.sin(i))
 
-        self.xAxis = QCategoryAxis()
-        self.yAxis = QCategoryAxis()
-
-        self.xAxis.setLabelsFont(self.axisLabelFont)
-        self.yAxis.setLabelsFont(self.axisLabelFont)
-
-        self.xAxis.setLinePen(self.axisPen)
-        self.yAxis.setLinePen(self.axisPen)
-
         self.chart = QChart()        
         self.chart.addSeries(self.series)
-        self.chart.createDefaultAxes()
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
         self.chart.setTitleFont(self.font)
         self.chart.setTitleBrush(QBrush(Qt.blue))
@@ -73,15 +55,27 @@ class Window(QMainWindow):
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignBottom)
 
-        self.chart.addAxis(self.xAxis, Qt.AlignBottom)
-        self.chart.addAxis(self.yAxis, Qt.AlignLeft)
-
         self.chartview = QChartView(self.chart)
         self.chartview.setRenderHint(QPainter.Antialiasing)
+
+        self.axisX = QValueAxis()
+        self.axisX.setRange(0, 2 * np.pi)
+        self.axisX.setTickCount(6)
+        self.axisX.setLabelFormat("%.1f")
+        self.axisX.setTitleText("x")
+
+        self.axisY = QValueAxis()
+        self.axisY.setRange(0, 100)
+        self.axisY.setLabelFormat("%d")
+        self.axisY.setTitleText("sin(x)")
+
+        self.chart.addAxis(self.axisX, Qt.AlignBottom)
+        self.chart.addAxis(self.axisY, Qt.AlignLeft)
 
         self.setCentralWidget(self.chartview)
 
 
 App = QApplication(sys.argv)
 window = Window()
+window.show()
 sys.exit(App.exec_())
