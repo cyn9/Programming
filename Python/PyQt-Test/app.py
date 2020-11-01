@@ -45,14 +45,17 @@ class Ui_MainWindow(object):
         self.m_txtPwd.setObjectName("m_txtPwd")
         self.m_txtPwd.setEchoMode(QLineEdit.Password)
         self.verticalLayout.addWidget(self.m_gBoxInfo)
+        
         self.m_btnLogin = QtWidgets.QPushButton(self.centralwidget)
         self.m_btnLogin.setObjectName("m_btnLogin")
         self.m_btnLogin.clicked.connect(self.OnButtonLoginClicked)
         self.verticalLayout.addWidget(self.m_btnLogin)
+
         self.m_btnClear = QtWidgets.QPushButton(self.centralwidget)
         self.m_btnClear.setObjectName("m_btnClear")
         self.m_btnClear.clicked.connect(self.OnButtonClearClicked)
         self.verticalLayout.addWidget(self.m_btnClear)
+        
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 240, 24))
