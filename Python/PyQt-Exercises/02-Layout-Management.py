@@ -15,13 +15,16 @@ class LayoutExample(QWidget):
         self.initialize()
     
     def initialize(self):
-        self.m_lblUsername = QLabel("Username : ")
-        self.m_lblTitle = QLabel("Title : ")
-        self.m_lblMessage = QLabel("Message : ")
+        self.m_lblUsername  = QLabel("Username : ")
+        self.m_lblTitle     = QLabel("Title : ")
+        self.m_lblMessage   = QLabel("Message : ")
 
-        self.m_txtUsername = QLineEdit("")
-        self.m_txtTitle = QLineEdit("")
-        self.m_txtMessage = QTextEdit("")
+        self.m_txtUsername  = QLineEdit("")
+        self.m_txtTitle     = QLineEdit("")
+        self.m_txtMessage   = QTextEdit("")
+
+        self.m_btnSubmit    = QPushButton("Submit")
+        self.m_btnClear     = QPushButton("Clear")
 
         self.grid = QGridLayout()
         self.grid.setSpacing(10)
@@ -35,9 +38,12 @@ class LayoutExample(QWidget):
         self.grid.addWidget(self.m_lblMessage, 3, 0)
         self.grid.addWidget(self.m_txtMessage, 3, 1, 4, 1)
 
+        self.grid.addWidget(self.m_btnClear, 8, 0)
+        self.grid.addWidget(self.m_btnSubmit, 8, 1)
+
         self.setLayout(self.grid)
 
-        self.setGeometry(300, 300, 350, 300)
+        self.setGeometry(300, 300, 300, 250)
         self.setWindowTitle("Grid Layout Test")
         self.show()
 
