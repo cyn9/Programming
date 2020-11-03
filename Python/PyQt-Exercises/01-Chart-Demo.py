@@ -1,9 +1,9 @@
+import sys
+import numpy as np
+
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QDesktopWidget
 from PyQt5.QtWidgets import QMainWindow
-
-import sys
-import numpy as np
 
 from PyQt5.Qt import QPen
 
@@ -77,5 +77,4 @@ class Window(QMainWindow):
 
 App = QApplication(sys.argv)
 window = Window()
-window.show()
 sys.exit(App.exec_())
