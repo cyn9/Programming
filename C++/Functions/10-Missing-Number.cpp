@@ -1,22 +1,23 @@
 #include <iostream>
 
-using namespace std;
-
 #define ll long long
 
 int main(void) {
-	ll n, total = 0, s = 0;
-	cin >> n;
+	ll n {0};
+	ll total {0};
+	ll s {0};
+
+	std::cin >> n;
 
 	ll nums[n-1];
 	for (ll i = 0; i < n-1; i++) {
-		cin >> nums[i];
+		std::cin >> nums[i];
 		s += nums[i];
 	}
 
 	total = n*(n+1)/2;
 
-	cout << total - s << endl;
+	std::cout << total - s << std::endl;
 
 	return 0;
 }
