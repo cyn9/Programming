@@ -7,6 +7,9 @@ class User:
         self.age = age
         User.activeUsers += 1
     
+    def __repr__(self) -> str:
+        return f"{self.firstName} of age {self.age}."
+    
     # Displays the number of active users.
     @classmethod
     def displayActiveUsers(cls):
@@ -88,3 +91,6 @@ print(User.displayActiveUsers())
 
 user4 = User.clsFromString("Jack,Steeler,45")
 print(f"Full name is {user4.getFullName()}.")
+
+print()
+print(user1)    # Use of __repr__
