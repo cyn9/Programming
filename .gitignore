@@ -31,3 +31,4 @@ bin/
 
 # Ignore UI files (if exists)
 *.ui
+Python/GUI-Test-2/__pycache__/Window.cpython-39.pyc
