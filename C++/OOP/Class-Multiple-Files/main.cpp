@@ -7,14 +7,19 @@ using std::endl;
 
 int main() {
     int number {};
+    int k {};
 
     cout << "Enter a number : ";
     cin >> number;
 
-    Test t;
+    cout << "Enter a scaler : ";
+    cin >> k;
 
-    cout << number << "^2 = " << t.findSquare(number) << endl;
-    cout << number << "^3 = " << t.findCube(number) << endl;
+    Test* t;
+
+    cout << number << "x" << k << " = " << t->scale(number, k) << endl;
+    cout << number << "^2 = " << t->findSquare(number) << endl;
+    cout << number << "^3 = " << t->findCube(number) << endl;
 
     return 0;
 }
