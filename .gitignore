@@ -35,5 +35,8 @@ bin/
 # Ignore C++ output source .o files:
 *.o
 
+# Ignore image files:
+*.png
+
 # Ignore specific files/folders:
 Python/GUI-Test-2/__pycache__/Window.cpython-39.pyc
