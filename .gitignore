@@ -10,25 +10,30 @@
 
 ### Above combination will ignore all files without extension ###
 
-# Ignore files with extension `.class` & `.sm`
+# Ignore files with extension `.class` & `.sm`:
 *.class
 *.sm
 *.exe
 
-# Ignore `bin` dir
+# Ignore `bin` dir:
 bin/
 # or
 */bin/*
 
-# Unignore all `.jar` in `bin` dir
+# Unignore all `.jar` in `bin` dir:
 !*/bin/*.jar
 
-# Ignore all `library.jar` in `bin` dir
+# Ignore all `library.jar` in `bin` dir:
 */bin/library.jar
 
-# VSCode
+# VSCode:
 .vscode/
 
-# Ignore UI files (if exists)
+# Ignore UI files (if exists):
 *.ui
+
+# Ignore C++ .o files:
+*.o
+
+# Ignore specific files/folders:
 Python/GUI-Test-2/__pycache__/Window.cpython-39.pyc
