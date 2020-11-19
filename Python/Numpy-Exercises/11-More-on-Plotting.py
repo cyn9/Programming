@@ -23,7 +23,7 @@ ax.set_title('Test', fontweight = 'bold')
 ax.set_xlabel('t (sec)', fontweight = 'bold')
 ax.set_ylabel('Amplitude (V)', fontweight = 'bold')
 
-ax.set_xlim([0, 12])
+ax.set_xlim([0, np.floor(max(x))])
 ax.set_ylim([-1, 1])
 
 plt.legend(loc = 'upper right', framealpha = 1, fancybox = False, fontsize = 9.5)
@@ -31,7 +31,7 @@ plt.legend(loc = 'upper right', framealpha = 1, fancybox = False, fontsize = 9.5
 plt.xticks(np.arange(min(x), max(x), 2.0))
 plt.yticks(np.arange(min(y1), max(y2), 0.5))
 
-ax.grid()
+ax.grid(linestyle = ':', linewidth = 1.35)
 
 fig.savefig('Test_Figure_2.png', dpi = 600)
 
