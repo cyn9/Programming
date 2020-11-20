@@ -20,6 +20,9 @@ public:
     Movie(std::string name)                         : Movie(name, "N/A", 0)     {}
     Movie(std::string name, std::string rating)     : Movie(name, rating, 0)    {}
 
+    // Copy constructor:
+    Movie(const Movie &M) : Movie(M.movieName, M.movieRating, M.watchCount) {}
+
     // Destructor
     ~Movie() {}
 
