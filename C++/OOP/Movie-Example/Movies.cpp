@@ -31,7 +31,9 @@ bool Movies::incrWatchCount(std::string name) {
 
 void Movies::displayMovies() const {
     if (M.size() == 0) {
+        cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = " << endl;
         cout << "No record..." << endl;
+        cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = " << endl;
     }
     else {
         cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = " << endl;
@@ -56,4 +58,8 @@ bool Movies::deleteMovie(std::string name) {
     }
 
     return false;
+}
+
+void Movies::eraseRecords() {
+    M.clear();
 }

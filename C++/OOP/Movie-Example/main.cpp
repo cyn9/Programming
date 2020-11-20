@@ -21,6 +21,9 @@ int main() {
     myMovies.deleteMovie("Matrix");
     myMovies.displayMovies();
 
+    myMovies.eraseRecords();
+    myMovies.displayMovies();
+
     return 0;
 }
 
@@ -41,4 +44,8 @@ void incrementWatchCount(Movies &M, std::string name) {
 void deleteMovie(Movies &M, std::string name) {
     if (!M.deleteMovie(name))
         cout << "Couldn't find movie..." << endl;
+}
+
+void eraseRecords(Movies &M) {
+    M.eraseRecords();
 }

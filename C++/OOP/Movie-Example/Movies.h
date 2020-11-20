@@ -13,15 +13,16 @@ private:
 
 public:
     // Constructor
-    Movies()                {}
+    Movies()    { M.reserve(100); }
 
     // Destructor
-    ~Movies() {}
+    ~Movies()   {}
 
     bool addMovie(std::string name, std::string rating, int count);
     bool incrWatchCount(std::string name);
     bool deleteMovie(std::string name);
-
+    
+    void eraseRecords();
     void displayMovies() const;
 
 };
