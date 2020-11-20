@@ -23,6 +23,9 @@ public:
     // Copy constructor:
     Movie(const Movie &M) : Movie(M.movieName, M.movieRating, M.watchCount) {}
 
+    // Move constructor:
+    Movie(Movie &&M) noexcept;
+
     // Destructor
     ~Movie() {}
 

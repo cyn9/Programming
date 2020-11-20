@@ -1,5 +1,11 @@
 #include "Movie.h"
 
+Movie::Movie(Movie &&M) noexcept : Movie(M.getMovieName(), M.getMovieRating(), M.getWatchCount()) {
+    M.setMovieName("");
+    M.setMovieRating("");
+    M.setWatchCount(0);
+}
+
 std::string Movie::getMovieName() const {
     return this->movieName;
 }
