@@ -18,6 +18,9 @@ int main() {
     addNewMovie(myMovies, "Se7en", "PG-13", 3);
     myMovies.displayMovies();
 
+    myMovies.deleteMovie("Matrix");
+    myMovies.displayMovies();
+
     return 0;
 }
 
@@ -33,4 +36,9 @@ void incrementWatchCount(Movies &M, std::string name) {
     else {
         cout << "Movie not found in the records..." << endl;
     }
+}
+
+void deleteMovie(Movies &M, std::string name) {
+    if (!M.deleteMovie(name))
+        cout << "Couldn't find movie..." << endl;
 }

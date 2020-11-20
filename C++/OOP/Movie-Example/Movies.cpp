@@ -40,3 +40,18 @@ void Movies::displayMovies() const {
             cout << e.getMovieName() << "\t\t" << e.getMovieRating() << "\t\t" << e.getWatchCount() << endl;
     }
 }
+
+bool Movies::deleteMovie(std::string name) {
+    unsigned index = 0;
+
+    for (auto &e: M) {
+        if (e.getMovieName() == name) {
+            M.erase(M.begin() + index);
+            index++;
+            
+            return true;
+        }
+    }
+
+    return false;
+}

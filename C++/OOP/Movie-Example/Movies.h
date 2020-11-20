@@ -20,6 +20,7 @@ public:
 
     bool addMovie(std::string name, std::string rating, int count);
     bool incrWatchCount(std::string name);
+    bool deleteMovie(std::string name);
 
     void displayMovies() const;
 
