@@ -7,6 +7,7 @@ bool Movies::addMovie(std::string name, std::string rating, int count) {
 
     for (const auto &e: M) {
         if (e.getMovieName() == name) {
+            cout << "123";
             return false;
         }
     }

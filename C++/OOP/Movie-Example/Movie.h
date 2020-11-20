@@ -31,6 +31,7 @@ public:
     // Setter methods:
     void setMovieName(std::string movieName);
     void setMovieRating(std::string movieRating);
+    void setWatchCount(int watchCount);
 
     void incrementWatchCount();
 

@@ -20,6 +20,10 @@ void Movie::setMovieRating(std::string movieRating) {
     this->movieRating = movieRating;
 }
 
+void Movie::setWatchCount(int watchCount) {
+    this->watchCount = watchCount;
+}
+
 void Movie::incrementWatchCount() {
     this->watchCount++;
 }
