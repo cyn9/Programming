@@ -34,7 +34,9 @@ void Movies::displayMovies() const {
         cout << "No record..." << endl;
     }
     else {
+        cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = " << endl;
         cout << "Movie\t\t" << "Rating\t\t" << "Watch Count" << endl;
+        cout << "= = = = = = = = = = = = = = = = = = = = = = = = = = = = " << endl;
         
         for (auto e: M)
             cout << e.getMovieName() << "\t\t" << e.getMovieRating() << "\t\t" << e.getWatchCount() << endl;
@@ -42,13 +44,13 @@ void Movies::displayMovies() const {
 }
 
 bool Movies::deleteMovie(std::string name) {
-    unsigned index = 0;
+    unsigned index = 1;
 
     for (auto &e: M) {
         if (e.getMovieName() == name) {
             M.erase(M.begin() + index);
             index++;
-            
+
             return true;
         }
     }
