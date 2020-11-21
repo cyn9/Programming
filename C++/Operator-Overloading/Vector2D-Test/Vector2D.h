@@ -4,23 +4,24 @@
 
 class Vector2D {
 private:
-    double width;
-    double height;
+    double x;
+    double y;
 
 public:
-    Vector2D() : width{0}, height{0} {};
-    Vector2D(double width, double height) : width{width}, height{height} {}
+    Vector2D() : x{0}, y{0} {};
+    Vector2D(double x, double y) : x{x}, y{y} {}
 
     Vector2D operator+(const Vector2D &) const;
     Vector2D operator-(const Vector2D &) const;
+    double operator*(const Vector2D &) const;
 
     ~Vector2D() {}
 
-    void setWidth(double);
-    void setHeight(double);
+    void setX(double);
+    void setY(double);
 
-    double getWidth() const;
-    double getHeight() const;
+    double getX() const;
+    double getY() const;
 
     void printVector() const;
 };
