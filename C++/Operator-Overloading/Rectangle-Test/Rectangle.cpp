@@ -1,7 +1,7 @@
 #include "Rectangle.h"
 
-double Rectangle::getHeight()   const { return this->height; }
-double Rectangle::getWidth()    const { return this->width; }
+double Rectangle::getHeight() const { return this->height; }
+double Rectangle::getWidth()  const { return this->width; }
 
 void Rectangle::setWidth(double width)   { this->width = width; }
 void Rectangle::setHeight(double height) { this->height = height; }
