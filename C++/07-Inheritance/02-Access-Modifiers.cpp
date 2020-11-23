@@ -64,5 +64,14 @@ int main() {
     d.changeBaseMembers();
     d.printBaseMembers();
 
+    d.a = 10;       // This is OK.
+    // d.b = 50;    // No access to protected members. Compiler error.
+    // d.c = 100;   // No access to private members. Compiler error.
+
+    d.printBaseMembers();
+
+    d.display();    // Also possible to access Base class function 
+                    // from a Derived class because display() is public.
+
     return 0;
 }
