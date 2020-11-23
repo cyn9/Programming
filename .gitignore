@@ -38,5 +38,25 @@ bin/
 # Ignore image files:
 *.png
 
-# Ignore specific files/folders:
-Python/GUI-Test-2/__pycache__/Window.cpython-39.pyc
+# Ignore Python related:
+*.pyc
+*.pyo
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
