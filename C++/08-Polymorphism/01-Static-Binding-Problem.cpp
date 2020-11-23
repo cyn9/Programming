@@ -38,5 +38,9 @@ int main() {
 }
 
 void showMessage(const Base &obj) {
+    // "obj" is a reference to Base class. That's why
+    // compiler binds "obj" to --Base-- class printMessage()
+    // method even when obj is of --Derived--.
+
     obj.printMessage();
 }
