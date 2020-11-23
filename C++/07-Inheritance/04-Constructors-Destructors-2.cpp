@@ -42,8 +42,8 @@ public:
 };
 
 int main() {
-    Derived d {500};
-    d.display();
+    Derived* d = new Derived(500);
+    d->display();
     
     return 0;
 }
