@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 class Base {
 
@@ -20,19 +21,29 @@ int main() {
     Base b1;
     Derived d1;
 
-    showMessage(b1); // Invokes Base class printMessage().
-    showMessage(d1); // Invokes Base class printMessage().
+    showMessage(b1);    // Invokes Base class printMessage().
+    showMessage(d1);    // Invokes Base class printMessage().
+
+    std::cout << "- - - - - - - - - - - - - - - - - - - - " << std::endl;
 
     // With dynamic memory allocation:
 
     Base* b2 = new Base();
     Base* d2 = new Derived();
 
-    showMessage(*b2); // Invokes Base class printMessage().
-    showMessage(*d2); // Invokes Base class printMessage().
+    showMessage(*b2);   // Invokes Base class printMessage().
+    showMessage(*d2);   // Invokes Base class printMessage().
+
+    std::cout << "- - - - - - - - - - - - - - - - - - - - " << std::endl;
 
     b2->printMessage(); // Invokes Base class printMessage().
     d2->printMessage(); // Invokes Base class printMessage().
+
+    std::cout << "- - - - - - - - - - - - - - - - - - - - " << std::endl;
+
+    // Smart pointer example:
+    std::unique_ptr<Base> p = std::make_unique<Derived>();
+    showMessage(*p);
 
     return 0;
 }
