@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 
-class Base { public: virtual void print() const; };
+class Base { public: virtual void print() const; virtual ~Base() {} };
 
-class A : public Base   { public: virtual void print() const; };
-class B : public Base   { public: virtual void print() const; };
-class C : public Base   { public: virtual void print() const; };
-class D : public C      { public: virtual void print() const; };
+class A : public Base   { public: virtual void print() const; virtual ~A() {} };
+class B : public Base   { public: virtual void print() const; virtual ~B() {} };
+class C : public Base   { public: virtual void print() const; virtual ~C() {} };
+class D : public C      { public: virtual void print() const; virtual ~D() {} };
 
 void Base::print()  const { std::cout << "Base class print()." << std::endl; }
 void    A::print()  const { std::cout << "Derived A class print()." << std::endl; }
