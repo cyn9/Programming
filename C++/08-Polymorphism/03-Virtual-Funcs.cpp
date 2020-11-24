@@ -1,18 +1,24 @@
 #include <iostream>
 #include <vector>
 
-class Base { public: virtual void print() const; virtual ~Base() {} };
+class Base { public: virtual void print() const; virtual ~Base(); };
 
-class A : public Base   { public: virtual void print() const; virtual ~A() {} };
-class B : public Base   { public: virtual void print() const; virtual ~B() {} };
-class C : public Base   { public: virtual void print() const; virtual ~C() {} };
-class D : public C      { public: virtual void print() const; virtual ~D() {} };
+class A : public Base   { public: virtual void print() const; virtual ~A(); };
+class B : public Base   { public: virtual void print() const; virtual ~B(); };
+class C : public Base   { public: virtual void print() const; virtual ~C(); };
+class D : public C      { public: virtual void print() const; virtual ~D(); };
 
 void Base::print()  const { std::cout << "Base class print()." << std::endl; }
-void    A::print()  const { std::cout << "Derived A class print()." << std::endl; }
-void    B::print()  const { std::cout << "Derived B class print()." << std::endl; }
-void    C::print()  const { std::cout << "Derived C class print()." << std::endl; }
-void    D::print()  const { std::cout << "Derived D class print()." << std::endl; }
+void A::print()     const { std::cout << "Derived A class print()." << std::endl; }
+void B::print()     const { std::cout << "Derived B class print()." << std::endl; }
+void C::print()     const { std::cout << "Derived C class print()." << std::endl; }
+void D::print()     const { std::cout << "Derived D class print()." << std::endl; }
+
+Base::~Base()   { std::cout << "Virtual dtor for Base" << std::endl; }
+A::~A()         { std::cout << "Virtual dtor for A" << std::endl; }
+B::~B()         { std::cout << "Virtual dtor for B" << std::endl; }
+C::~C()         { std::cout << "Virtual dtor for C" << std::endl; }
+D::~D()         { std::cout << "Virtual dtor for D" << std::endl; }
 
 int main() {
 
