@@ -14,6 +14,10 @@ void B::print()     const { std::cout << "Derived B class print()." << std::endl
 void C::print()     const { std::cout << "Derived C class print()." << std::endl; }
 void D::print()     const { std::cout << "Derived D class print()." << std::endl; }
 
+// Always use virtual destructors otherwise
+// compiler cannot know which destructor to
+// call when deallocating memory during the
+// cleanup for classes.
 Base::~Base()   { std::cout << "Virtual dtor for Base" << std::endl; }
 A::~A()         { std::cout << "Virtual dtor for A" << std::endl; }
 B::~B()         { std::cout << "Virtual dtor for B" << std::endl; }
