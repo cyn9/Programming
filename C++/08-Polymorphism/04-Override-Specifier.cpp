@@ -31,13 +31,23 @@ void Derived::printMessage() const {
     std::cout << "Hello from the Derived class." << std::endl;
 }
 
+void print(const Base &);
+
 int main() {
 
     Base* b = new Base();
     Base* d = new Derived();
 
+    // Works either way:
     b->printMessage();
     d->printMessage();
 
+    print(*b);
+    print(*d);
+
     return 0;
+}
+
+void print(const Base &obj) {
+    obj.printMessage();
 }
