@@ -71,7 +71,7 @@ int main() {
     V->push_back(s3);
     V->push_back(s4);
 
-    for (auto &e: *V) {
+    for (const auto &e: *V) {
         std::cout << "Element " << count << " : " << std::endl;
 
         e->draw();
