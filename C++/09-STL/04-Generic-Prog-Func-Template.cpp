@@ -16,7 +16,6 @@ struct Person {
     bool operator<(const Person &rhs) const {
         return this->age < rhs.age;
     }
-
 };
 
 // Overloading "<<" stream operator in order
