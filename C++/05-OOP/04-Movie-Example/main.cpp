@@ -6,6 +6,8 @@ using std::endl;
 
 void addNewMovie(Movies &, std::string, std::string, int);
 void incrementWatchCount(Movies &, std::string);
+void deleteMovie(Movies &M, std::string);
+void eraseRecords(Movies &);
 
 int main() {
     Movies myMovies;
