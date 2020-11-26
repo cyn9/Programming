@@ -25,7 +25,7 @@ int main() {
     std::shared_ptr<Test> tPtr1 {new Test{10}, deleterFunc};
     
     // Custom deleter using lambdas:
-    std::shared_ptr<Test> tPtr2 (new Test{10}, [] (Test *t) {
+    std::shared_ptr<Test> tPtr2 (new Test{1}, [] (Test *t) {
         std::cout << "Custom deleter function is called (lambda)." << std::endl;
         delete t;
     });
