@@ -35,7 +35,7 @@ int main() {
 
     std::cout << "Size of V : " << V->size() << std::endl;
 
-    for (auto &e: *V) {
+    for (const auto &e: *V) {
         e->Foo();
         std::cout << "Data : " << e->getData() << std::endl;
     }
