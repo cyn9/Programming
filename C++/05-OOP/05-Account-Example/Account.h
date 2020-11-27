@@ -9,6 +9,8 @@ class Account {
     protected:
         std::string name;
         double balance;
+
+        friend std::ostream &operator<<(std::ostream &os, const Account &obj);
     
     public:
         Account()                                   : name{"N/A"}, balance{0.0}     {}

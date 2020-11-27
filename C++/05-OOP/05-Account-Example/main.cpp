@@ -9,8 +9,11 @@
 
 int main() {
 
-    std::unique_ptr<Account> acc1 = std::make_unique<Trust>("John Doe", 3000.00);
-    acc1->getAccountInfo();
+    std::unique_ptr<Account> acc = std::make_unique<Trust>("John Doe", 3000.00);
+
+    std::cout << std::move(*acc);
+
+    // Test all the classes here.
 
     return 0;
 }

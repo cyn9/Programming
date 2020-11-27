@@ -1,5 +1,14 @@
 #include "Trust.h"
 
+std::ostream &operator<<(std::ostream &os, const Trust &obj) {
+    os << "[ Trust Account : " << obj.getAccountName() 
+                               << ", Balance : $" << obj.getAccountBalance() 
+                               << ", Interest Rate : " << obj.interestRate
+                               << "% ]" << std::endl;
+
+    return os;
+}
+
 void Trust::getAccountInfo() const {
     std::cout << "[ Trust Account : " << this->getAccountName() 
                                       << ", Balance : $" << this->getAccountBalance() 
@@ -24,7 +33,7 @@ double Trust::getAccountBalance() const {
 }
 
 void Trust::doWithdrawal(double amount) {
-    if (this->numOfWithdrawals < 4 && amount <= this->getAccountBalance()) {
+    if (this->numOfWithdrawals < 4 && amount <= this->getAccountBalance() * 0.20) {
         Account::doWithdrawal(amount);
         numOfWithdrawals++;
     }
@@ -39,4 +48,3 @@ void Trust::makeDeposit(double amount) {
     amount >= 5000 ? Account::makeDeposit(amount + this->bonus) 
                    : Account::makeDeposit(amount);
 }
-

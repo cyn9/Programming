@@ -1,5 +1,13 @@
 #include "Account.h"
 
+std::ostream &operator<<(std::ostream &os, const Account &obj) {
+    os << "[ Account : " << obj.getAccountName() 
+                         << ", Balance : $" << obj.getAccountBalance() 
+                         << ", Interest Rate : 0%" << " ]" << std::endl;
+
+    return os;    
+}
+
 void Account::getAccountInfo() const {
     std::cout << std::fixed << std::setprecision(2);
     std::cout << "[ Account : " << this->getAccountName() 

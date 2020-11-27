@@ -8,6 +8,8 @@ class Checking : public Account {
 
     protected:
         static double constexpr withdrawFee = 1.50;
+
+        friend std::ostream &operator<<(std::ostream &os, const Checking &obj);
     
     public:
         Checking()                                   : Account("", 0.0)       { numOfProcesses = 0; }
