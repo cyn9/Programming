@@ -5,7 +5,7 @@
 class SavingsAccount : public Account {
 
     protected:
-        static double constexpr interestRate = 5.00;
+        static constexpr double interestRate = 5.00;
     
     public:
         SavingsAccount()                                   : Account("", 0.0)       {}

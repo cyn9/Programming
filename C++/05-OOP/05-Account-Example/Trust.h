@@ -5,8 +5,8 @@
 class Trust : public SavingsAccount {
 
     protected:
-        static int constexpr maxWithdrawalsPerYear = 3;
-        static double constexpr bonus = 50.00;
+        static constexpr int  maxWithdrawalsPerYear = 3;
+        static constexpr double bonus = 50.00;
         int numOfWithdrawals;
 
     public:
