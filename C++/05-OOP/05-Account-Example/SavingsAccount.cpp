@@ -23,6 +23,10 @@ double SavingsAccount::getAccountBalance() const {
     return Account::getAccountBalance();
 }
 
+void SavingsAccount::doWithdrawal(double amount) {
+    Account::doWithdrawal(amount);
+}
+
 void SavingsAccount::makeDeposit(double amount) {
     Account::makeDeposit(amount += (amount * this->interestRate/100));
 }

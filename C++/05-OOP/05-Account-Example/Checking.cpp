@@ -1,9 +1,10 @@
 #include "Checking.h"
 
 void Checking::getAccountInfo() const {
-    std::cout << "[ Checking Account : " << this->getAccountName() 
-                                         << ", Balance : $" << this->getAccountBalance() 
-                                         << "]" << std::endl;
+    std::cout << "[" << this->numOfProcesses << "] "
+                     << "[ Checking Account : " << this->getAccountName() 
+                     << ", Balance : $" << this->getAccountBalance() 
+                     << "]" << std::endl;
 }
 
 void Checking::setAccountName(std::string name) {
@@ -23,6 +24,12 @@ double Checking::getAccountBalance() const {
 }
 
 void Checking::doWithdrawal(double amount) {
-    std::cout << "Checking withdrawal." << std::endl;
+    numOfProcesses++; 
     Account::doWithdrawal(amount + withdrawFee);
 }
+
+void Checking::makeDeposit(double amount) {
+    numOfProcesses++; 
+    Account::makeDeposit(amount);
+}
+

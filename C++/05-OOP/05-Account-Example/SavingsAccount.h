@@ -14,8 +14,9 @@ class SavingsAccount : public Account {
 
         ~SavingsAccount() {}
 
-        void getAccountInfo() const override;
-        void makeDeposit(double amount) override;
+        virtual void getAccountInfo() const override;
+        virtual void doWithdrawal(double amount) override;
+        virtual void makeDeposit(double amount) override;
 
         void setAccountName(std::string name);
         void setAccountBalance(double balance);
