@@ -9,8 +9,6 @@ class Trust : public SavingsAccount {
         static double constexpr bonus = 50.00;
         int numOfWithdrawals;
 
-        friend std::ostream &operator<<(std::ostream &os, const Trust &obj);
-
     public:
         Trust()                                   : SavingsAccount("", 0.0)       { numOfWithdrawals = 0; }
         Trust(std::string name)                   : SavingsAccount(name, 0.0)     { numOfWithdrawals = 0; }

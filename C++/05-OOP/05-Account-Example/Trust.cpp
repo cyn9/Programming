@@ -1,14 +1,5 @@
 #include "Trust.h"
 
-std::ostream &operator<<(std::ostream &os, const Trust &obj) {
-    os << "[ Trust Account : " << obj.getAccountName() 
-                               << ", Balance : $" << obj.getAccountBalance() 
-                               << ", Interest Rate : " << obj.interestRate
-                               << "% ]" << std::endl;
-
-    return os;
-}
-
 void Trust::getAccountInfo() const {
     std::cout << "[ Trust Account : " << this->getAccountName() 
                                       << ", Balance : $" << this->getAccountBalance() 

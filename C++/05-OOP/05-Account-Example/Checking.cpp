@@ -1,14 +1,5 @@
 #include "Checking.h"
 
-std::ostream &operator<<(std::ostream &os, const Checking &obj) {
-    os << "[" << obj.numOfProcesses << "] "
-              << "[ Checking Account : " << obj.getAccountName() 
-              << ", Balance : $" << obj.getAccountBalance() 
-              << "]" << std::endl;
-
-    return os;
-}
-
 void Checking::getAccountInfo() const {
     std::cout << "[" << this->numOfProcesses << "] "
                      << "[ Checking Account : " << this->getAccountName() 
