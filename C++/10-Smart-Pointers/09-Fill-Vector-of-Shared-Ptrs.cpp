@@ -54,8 +54,7 @@ void fill(std::vector<std::shared_ptr<Test>> &vec, int num) {
     for (auto i = 0; i < num; i++) {
         std::cout << "Enter data point [" << (i+1) << "] : ";
         std::cin >> number;
-        std::shared_ptr<Test> p_Test = std::make_shared<Test>(number);
-        vec.push_back(p_Test);
+        vec.push_back(std::make_shared<Test>(number));
     }
 }
 
