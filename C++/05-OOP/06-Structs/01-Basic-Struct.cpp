@@ -6,10 +6,11 @@ struct User {
     std::string userName;
     int age;
 
-    // Public struct 
+    // Public struct methods.
     void setPassCode(std::string passCode) { this->passCode = passCode; } 
     std::string getPassCode() const        { return passCode; }
 
+    // Private members.
     private:
         std::string passCode = "1234";  // Default value.
 };
@@ -23,7 +24,7 @@ int main() {
     std::cout << "User Name : " << u1.userName << ", Age : " << u1.age << "." << '\n';
 
     u1.setPassCode("9876");
-    std::cout << "Pass code is " << u1.getPassCode() << "." << '\n';
+    std::cout << "Pass code is " << u1.getPassCode() << "." << std::endl;
 
     return 0;
 }
