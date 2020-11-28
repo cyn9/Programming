@@ -62,7 +62,7 @@ void display(const std::vector<std::shared_ptr<Test>> &vec) {
     std::cout << "Displaying vector data:" << std::endl;
     std::cout << "=======================" << std::endl;
 
-    for (auto e: vec)
+    for (const auto &e: vec)
         std::cout << e->getData() << std::endl;
 
     std::cout << "=======================" << std::endl;
