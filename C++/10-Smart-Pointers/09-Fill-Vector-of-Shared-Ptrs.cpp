@@ -2,12 +2,14 @@
 #include <vector>
 #include <memory>
 
-// Program description:
-// A unique pointer p_Vec consists of a vector of shared pointers
-// to class Test. make() function creates and returns the unique
-// pointer. Based on the num. of data points that user enters,
-// fill() func. creates shared pointers and fills the vector with
-// push_back. display() func. prints the data in the vector.
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Program description:  * * * * * * * * * * * * * * * * * * * * * *
+ * A unique pointer p_Vec consists of a vector of shared pointers  *
+ * to class Test. make() function creates and returns the unique   *
+ * pointer. Based on the num. of data points that user enters,     *
+ * fill() func. creates shared pointers and fills the vector with  *
+ * push_back. display() func. prints the data in the vector.       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 class Test;
 
@@ -29,7 +31,7 @@ class Test {
 };
 
 int main() {
-    int num;
+    int num {};
 
     std::unique_ptr<std::vector<std::shared_ptr<Test>>> p_Vec;
     p_Vec = make();
