@@ -31,8 +31,8 @@ class Player {
         }
 
         std::string getName() const { return this->name; }
-        int getHP() const           { return this->hp; }
-        int getXP() const           { return this->xp; }
+        inline constexpr const int getHP() const noexcept { return this->hp; }
+        inline constexpr const int getXP() const noexcept { return this->xp; }
 };
 
 int main() {
