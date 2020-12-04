@@ -35,6 +35,7 @@ int main() {
     printList(names);
 
     // Map example:
+    // Map >> {key, value} pair.
     std::map<std::string, std::string> compLangs {
         { "John"    , "C/C++" },
         { "Jess"    , "Java"  },
