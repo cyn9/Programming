@@ -22,12 +22,9 @@ class Player {
         // to search the objects in a container 
         // using iterators.
         friend bool operator==(const Player& lhs, const Player& rhs) {
-            if ( lhs.getHP() == rhs.getHP() &&
-                 lhs.getXP() == rhs.getXP() &&
-                 lhs.getName() == rhs.getName() )
-                return true;
-
-            return false;
+            return (lhs.getHP() == rhs.getHP() &&
+                    lhs.getXP() == rhs.getXP() &&
+                    lhs.getName() == rhs.getName());
         }
 
         std::string getName() const { return this->name; }
@@ -49,7 +46,7 @@ int main() {
     team->push_back(p3);
     printVec(*team);
 
-    auto loc = std::find(team->begin(), team->end(), p2);
+    auto loc = std::find(team->begin(), team->end(), p4);
 
     if (loc != team->end())
         std::cout << "Player found! \n";
