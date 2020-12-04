@@ -4,7 +4,7 @@
 #include <memory>
 
 class Player;
-void printVec(const std::vector<Player *> &);
+void printVec(const std::vector<std::shared_ptr<Player>> &);
 
 class Player {
     private:
@@ -37,34 +37,29 @@ class Player {
 
 int main() {
 
-    auto p1 = new Player {"John", 100, 50};
-    auto p2 = new Player {"Jane", 100, 60};
-    auto p3 = new Player {"Judy", 100, 75};
-    auto p4 = new Player {"Jack", 100, 50};
+    auto p1 = std::make_shared<Player>("John", 100, 50);
+    auto p2 = std::make_shared<Player>("Jane", 100, 60);
+    auto p3 = std::make_shared<Player>("Judy", 100, 75);
+    auto p4 = std::make_shared<Player>("Jack", 100, 50);
 
-    auto team = std::make_unique<std::vector<Player *>>();
+    auto team = std::make_unique<std::vector<std::shared_ptr<Player>>>();
     
     team->push_back(p1);
     team->push_back(p2);
     team->push_back(p3);
     printVec(*team);
 
-    auto loc = std::find(team->begin(), team->end(), p4);
+    auto loc = std::find(team->begin(), team->end(), p2);
 
     if (loc != team->end())
         std::cout << "Player found! \n";
     else
         std::cout << "Player not found! \n";
-    
-    delete p1;
-    delete p2;
-    delete p3;
-    delete p4;
 
     return 0;
 }
 
-void printVec(const std::vector<Player *> &V) {
+void printVec(const std::vector<std::shared_ptr<Player>> &V) {
     for (const auto &e : V) {
         std::cout << e->getName() << " >> HP : "
                   << e->getHP() << ", XP : "
