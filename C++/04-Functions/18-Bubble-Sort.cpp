@@ -3,13 +3,13 @@
 
 void swap(int *, int *);
 void bubbleSort(int *, size_t);
-void printArray(int *, size_t);
+void printArray(const int *, size_t);
 
 int main(){
     int array[] = {29, 28, 27, 26, 25, 24, 23, 22, 21, 20,
                    19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 
-                    9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-    size_t sz = sizeof(array) / sizeof(array[0]);
+                    9,  8,  7,  6,  5,  4,  3,  2,  1,  0};
+    constexpr size_t sz = sizeof(array) / sizeof(array[0]);
 
     // std::cout << ">> Run 0 : ";
     printArray(array, sz);
@@ -39,18 +39,17 @@ void bubbleSort(int *arr, size_t sz) {
             // else
             //     std::cout << ">> Run " << *ptrCount << " : ";                
             
-            if (arr[j] > arr[j+1]) {
+            if (arr[j] > arr[j+1]) 
                 swap(&arr[j], &arr[j+1]);
-            }
-            
+                       
             // printArray(arr, sz);
         }
     }
 }
 
-void printArray(int *arr, size_t sz) {
-    for (size_t i = 0; i < sz; i++) {
+void printArray(const int *arr, size_t sz) {
+    for (size_t i = 0; i < sz; i++) 
         std::cout << arr[i] << " ";
-    }
+    
     std::cout << std::endl;
 }
