@@ -5,6 +5,7 @@
 #include <map>
 
 void display(const std::vector<int> &);
+void display(const std::vector<int> &V, std::vector<int>::iterator, std::vector<int>::iterator);
 void printList(const std::list<std::string> &);
 void iterateMap(const std::map<std::string, std::string> &);
 void zero(std::vector<int> &);
@@ -43,6 +44,12 @@ int main() {
     };
     iterateMap(compLangs);
 
+    // Iterate over a subset of a container:
+    std::vector<int> Z {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    auto x = Z.begin() + 3;
+    auto y = Z.end() - 4;
+    display(Z, x, y);
+
     return 0;
 }
 
@@ -53,6 +60,17 @@ void display(const std::vector<int> &V) {
         std::cout << *it << " ";
     
     std::cout << "]\n";
+}
+
+// Overloading display() function
+void display(const std::vector<int> &V, std::vector<int>::iterator start, 
+                                        std::vector<int>::iterator finish) {
+    std::cout << "[ ";
+
+    for (auto it = start; it != finish; it++)
+        std::cout << *it << " ";
+    
+    std::cout << "]\n";                                        
 }
 
 void zero(std::vector<int> &V) {
