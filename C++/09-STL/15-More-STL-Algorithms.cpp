@@ -10,16 +10,14 @@ void countIfTest(void);
 void replaceTest(void);
 void allOfTest(void);
 
-template<typename T>
-void print(std::list<T> &);
-
-template<typename T>
-void print(std::vector<T> &);
+template<typename Container>
+void print(const Container &);
 
 class Test {
     private:
         std::string text;
         int number;
+
     public:
         Test()                             : text{static_cast<std::string>("N/A")}, number{0} {}
         Test(std::string text, int number) : text{text}, number{number}                       {}
@@ -39,9 +37,9 @@ class Test {
 };
 
 int main() {
-    // countTest();
-    // countIfTest();
-    // replaceTest();
+    countTest();
+    countIfTest();
+    replaceTest();
     allOfTest();
 
     return 0;
@@ -97,21 +95,11 @@ void allOfTest() {
         
 }
 
-// Simple print() function that prints
-// the elements inside of a list L.
-template<typename T>
-void print(std::list<T> &L) {
-    for (auto it = L.begin(); it != L.end(); it++)
-        std::cout << *it << " ";
-    
-    std::cout << "\n";
-}
-
-// Simple print() function that prints
-// the elements inside of a vector V.
-template<typename T>
-void print(std::vector<T> &V) {
-    for (auto it = V.begin(); it != V.end(); it++)
+// Simple print() function that prints the
+// elements inside of the container c.
+template<typename Container>
+void print(const Container &c) {
+    for (auto it = c.begin(); it != c.end(); it++)
         std::cout << *it << " ";
     
     std::cout << "\n";
