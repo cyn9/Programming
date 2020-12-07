@@ -31,11 +31,19 @@ int main() {
 bool isPalindrome(const std::string &str) {
     auto d = std::make_shared<std::deque<char>>();
 
+    // Remove all whitespaces, numbers and characters
+    // other than letters. Then, convert all characters 
+    // to lowercase.
     for (const auto &e: str)
         if (std::isalpha(e))
             d->push_back(std::tolower(e));
         
-
+    // When the size of the deque container is one, it
+    // means it is palindrome. If it's greater than one,
+    // check front and back values in the container. If
+    // they are not equal, string is not palindrome. If 
+    // they are equal, then remove these elements and 
+    // check for the remaining deque.
     while (d->size() > 1) {
         if (d->front() != d->back()) {
             return false;
