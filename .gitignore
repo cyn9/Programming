@@ -32,8 +32,9 @@ bin/
 # Ignore UI files (if exists):
 *.ui
 
-# Ignore C++ output source .o files:
+# Ignore C++ output source .o and .out files:
 *.o
+*.out
 
 # Ignore image files:
 *.png
