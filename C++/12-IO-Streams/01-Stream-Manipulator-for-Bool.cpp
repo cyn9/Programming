@@ -12,6 +12,7 @@ int main() {
     std::cout << "Boolean (5 == 10) : " << (5 == 10) << '\n';
 
     // Reset IOS flags:
+    // Default is 0 and 1 (equivalently noboolalpha)
     std::cout << std::resetiosflags(std::ios::boolalpha);
     std::cout << "Boolean (5 == 5) : " << (5 == 5) << '\n';
     std::cout << "Boolean (5 == 10) : " << (5 == 10) << '\n';
