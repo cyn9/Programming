@@ -6,7 +6,7 @@ void print(const char *, unsigned);
 
 int main() {
     
-    constexpr char *ch = "Hello, C++.";
+    constexpr char ch[] = "Hello, C++.";
     void (*fnc_ptr) (const char *, unsigned) = &print;
     
     (*fnc_ptr)(ch, 6);
