@@ -1,8 +1,7 @@
 '''
     @ author        cico
-    @ version       1.0
-    @ date          02/23/21
-    @ time          11:19 PM
+    @ date          02/24/21
+    @ time          1:01 PM
     @ description   Linear regression with one variable
                     x : population size (in 10000s)
                     y : profit (in $10000s)
