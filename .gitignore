@@ -64,3 +64,6 @@ var/
 
 # CSV datasets
 *.csv
+
+# TXT files
+*.txt
