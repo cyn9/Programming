@@ -8,11 +8,13 @@
                     y : profit (in $10000s)
 '''
 
-import numpy as np
-import pandas as pd
 from plotData import plotData
 from computeCost import computeCost
 from gradientDescent import gradientDescent
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
 ## =============== Part 1 : Data Loading =============== ##
 print('Loading data ...')
@@ -59,3 +61,26 @@ theta, J_hist = gradientDescent(X, y, theta, alpha, iterations)
 print("Theta found by the gradient descent and current cost: ")
 print(f"theta_0 = {theta[0, 0]:.3f} , theta_1 = {theta[1, 0]:.3f} , J = {J_hist[iterations-1].squeeze():.3f}.")
 
+# Plot history of cost function:
+J_hist_range = range(iterations)
+plt.figure(1)
+plt.plot(J_hist_range, J_hist)
+
+# Plot the linear fit and data
+plt.figure(2)
+plt.plot(X[:,1].reshape(m, 1), y, '+r')
+
+plt.xlabel('Population (in $10000s)')
+plt.ylabel('Profit (in 10000s)')
+plt.title('Population vs. Profit')
+
+plt.plot(X[:,1].reshape(m, 1), np.matmul(X, theta), '-')
+
+plt.show()
+
+# Predict values for population sizes of 35000 and 70000
+pred1 = np.matmul(np.array([[1], [3.5]]).T, theta).squeeze() * 10000
+pred2 = np.matmul(np.array([[1], [7.0]]).T, theta).squeeze() * 10000
+
+print(f"For a population of 35000, the predicted profit is ${pred1:.2f}.")
+print(f"For a population of 70000, the predicted profit is ${pred2:.2f}.")
