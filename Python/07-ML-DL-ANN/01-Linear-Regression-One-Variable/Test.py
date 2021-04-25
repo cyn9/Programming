@@ -1,7 +1,7 @@
 '''
     @ author        cico
-    @ date          02/24/21
-    @ time          1:01 PM
+    @ date          04/25/21
+    @ time          3:38 PM
     @ description   Linear regression with one variable
                     x : population size (in 10000s)
                     y : profit (in $10000s)
@@ -43,8 +43,8 @@ X = np.concatenate((x0, X_n), axis = 1)
 theta = np.zeros((2, 1))
 
 # Gradient descent settings:
-iterations = 1500
-alpha = 0.01
+iterations = 2000
+alpha = 0.005
 
 print('Testing the cost function ...')
 J = computeCost(X, y, theta)
@@ -64,6 +64,10 @@ print(f"theta_0 = {theta[0, 0]:.3f} , theta_1 = {theta[1, 0]:.3f} , J = {J_hist[
 J_hist_range = range(iterations)
 plt.figure(1)
 plt.plot(J_hist_range, J_hist)
+
+plt.xlabel('Iterations')
+plt.ylabel('Cost (J)')
+plt.title('Cost Function')
 
 # Plot the linear fit and data
 plt.figure(2)
