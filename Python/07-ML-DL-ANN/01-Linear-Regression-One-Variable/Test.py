@@ -7,6 +7,7 @@
                     y : profit (in $10000s)
 '''
 
+from numpy.core.shape_base import block
 from plotData import plotData
 from computeCost import computeCost
 from gradientDescent import gradientDescent
@@ -73,13 +74,11 @@ plt.title('Cost Function')
 plt.figure(2)
 plt.plot(X[:,1].reshape(m, 1), y, '+r')
 
-plt.xlabel('Population (in $10000s)')
-plt.ylabel('Profit (in 10000s)')
+plt.xlabel('Population (in 10000s)')
+plt.ylabel('Profit (in $10000s)')
 plt.title('Population vs. Profit')
 
 plt.plot(X[:,1].reshape(m, 1), np.matmul(X, theta), '-')
-
-plt.show()
 
 # Predict values for population sizes of 35000 and 70000
 pred1 = np.matmul(np.array([[1], [3.5]]).T, theta).squeeze() * 10000
@@ -87,3 +86,5 @@ pred2 = np.matmul(np.array([[1], [7.0]]).T, theta).squeeze() * 10000
 
 print(f"For a population of 35000, the predicted profit is ${pred1:.2f}.")
 print(f"For a population of 70000, the predicted profit is ${pred2:.2f}.")
+
+plt.show()
